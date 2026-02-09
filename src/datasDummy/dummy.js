@@ -56,7 +56,7 @@ export const menuDummy = [
     name: "Ice Coffee Milk",
     category: "Minuman",
     price: 15000,
-    stock: 150,
+    stock: 0,
     rating: 4,
     image: gambar8,
   },

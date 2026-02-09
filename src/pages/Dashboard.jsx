@@ -5,6 +5,7 @@ import MenuCard from "../components/MenuCard";
 import { menuDummy } from "../datasDummy/dummy";
 import { Link } from "react-router-dom";
 import Loading from "../components/Loading";
+import Transaksi from "../components/Transaksi";
 
 const Dashboard = () => {
   const [datas, setDatas] = useState([]);
@@ -12,7 +13,7 @@ const Dashboard = () => {
   // const getAll = () => {
 
   // };
-  const menus = Array.from({ length: 8 });
+  const menus = Array.from({ length: 20 });
 
   useEffect(() => {
     setTimeout(() => {
@@ -47,7 +48,7 @@ const Dashboard = () => {
         )}
       </div>
       <div className="w-60 bg-white shadow rounded-md ">
-        Melakukan pembayaran
+        <Transaksi />
       </div>
     </div>
   );
