@@ -28,7 +28,6 @@ const Dashboard = () => {
           <Button active={true}>Semua kategori</Button>
           <Button>Makanan</Button>
           <Button>Minuman</Button>
-
           <Input id="cari" name="cari" className="flex-1">
             Cari Menu
           </Input>

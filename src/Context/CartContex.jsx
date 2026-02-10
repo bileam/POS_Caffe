@@ -1,24 +1,23 @@
 import { createContext, useState } from "react";
-import { data } from "react-router-dom";
 
 export const CartContext = createContext();
 
 export const CartProvider = ({ children }) => {
-  const [datas, setDatas] = useState([]);
-  const addCart = (datas) => {
+  const [Listdata, setDatas] = useState([]);
+  const addCart = (product) => {
     // menganalasisi apakah prodduk sudah ada dalam cart
     setDatas((prev) => {
-      const existing = prev.find((item) => item.id === datas.id); //menacari data yang sama idnya
+      const existing = prev.find((item) => item.id === product.id); //menacari data yang sama idnya
       if (existing) {
         return prev.map(
           (item) =>
-            item.id === datas.id ? { ...item, qty: item.qty + 1 } : item //jika ada makan qty di tambah 1 jika idnya tiadk sama makan tampilkan item saja
+            item.id === product.id ? { ...item, qty: item.qty + 1 } : item //jika ada makan qty di tambah 1 jika idnya tiadk sama makan tampilkan item saja
         );
       }
       return [
         ...prev,
         {
-          ...datas,
+          ...product,
           qty: 1,
         },
       ];
@@ -26,18 +25,37 @@ export const CartProvider = ({ children }) => {
     // jika ada, tambahkan qtynya saja
     // jika belum tambakan datanya ke cart
   };
-  //   lihat semua isi cart
-  const getCart = () => {};
 
   //   hapus semua cart
-
+  const deleteAll = () => {
+    setDatas([]);
+  };
   //hapus salah satu cart
-
+  const deleteOne = (id) => {
+    setDatas((prev) => prev.filter((item) => item.id !== id));
+  };
   // tambahkan qty
+  const PlusQty = (id) => {
+    setDatas((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, qty: item.qty + 1 } : item
+      )
+    );
+  };
 
-  // kurangi qty
+  const MinusQty = (id) => {
+    setDatas((prev) =>
+      prev
+        .map((item) => (item.id === id ? { ...item, qty: item.qty - 1 } : item))
+        .filter((item) => item.qty > 0)
+    );
+  };
 
   return (
-    <CartContext.Provider value={{ addCart }}>{children}</CartContext.Provider>
+    <CartContext.Provider
+      value={{ addCart, Listdata, deleteAll, PlusQty, MinusQty, deleteOne }}
+    >
+      {children}
+    </CartContext.Provider>
   );
 };

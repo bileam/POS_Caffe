@@ -1,9 +1,15 @@
 import { Link } from "react-router-dom";
 import Image1 from "../assets/DummyMenu/burgerDummy.jpg";
+import { CartContext } from "../Context/CartContex";
+import { useContext } from "react";
+
 const MenuCard = ({ id, datas }) => {
+  const { addCart, Listdata } = useContext(CartContext);
+  // console.log(Listdata);
   return (
-    <Link
-      to={datas.stock === 0 ? "" : ""}
+    <button
+      disabled={datas.stock === 0}
+      onClick={() => addCart(datas)}
       key={id}
       className={`
       bg-white rounded-lg    p-3
@@ -30,7 +36,7 @@ const MenuCard = ({ id, datas }) => {
         </div>
       </div>
 
-      <div className="space-y-1">
+      <div className="space-y-1 text-start">
         <h1 className="font-bold max-w-45">{datas.name}</h1>
         <div className="flex justify-between items-center">
           <h1 className="text-[1rem] text-[#357c4d] font-bold">
@@ -40,7 +46,7 @@ const MenuCard = ({ id, datas }) => {
         </div>
         <h1 className="text-[0.7rem]">{datas.stock}/stock</h1>
       </div>
-    </Link>
+    </button>
   );
 };
 
