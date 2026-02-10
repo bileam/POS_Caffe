@@ -4,7 +4,7 @@ import { CartContext } from "../Context/CartContex";
 const OrderMenu = ({ datas }) => {
   const { deleteAll, PlusQty, MinusQty, deleteOne } = useContext(CartContext);
   return (
-    <div className="flex gap-2 bg-[#d4e7dc] text-green-800  rounded-md  ">
+    <div className="flex gap-2 shadow-[#d4e7dc]  shadow-md  rounded-md  ">
       <img
         src={datas.image}
         alt=""

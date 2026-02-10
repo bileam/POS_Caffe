@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Button from "../components/Button";
 import Input from "../components/Input";
 import MenuCard from "../components/MenuCard";
@@ -6,18 +6,21 @@ import { menuDummy } from "../datasDummy/dummy";
 import { Link } from "react-router-dom";
 import Loading from "../components/Loading";
 import Transaksi from "../components/Transaksi";
+import { ProductContext } from "../Context/ProductContext";
 
 const Chasir = () => {
   const [datas, setDatas] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { listProduct } = useContext(ProductContext);
   // const getAll = () => {
 
   // };
+  // console.log(listProduct);
   const menus = Array.from({ length: 20 });
-
+  // console.log(listProduct);
   useEffect(() => {
     setTimeout(() => {
-      setDatas(menuDummy);
+      setDatas(listProduct);
       setLoading(false);
     }, 2000);
   }, []);
@@ -40,13 +43,13 @@ const Chasir = () => {
           </div>
         ) : (
           <div className="flex flex-wrap gap-4 w-full overflow-y-auto no-scrollbar ">
-            {datas.map((item, index) => (
+            {listProduct.map((item, index) => (
               <MenuCard id={index} datas={item} />
             ))}
           </div>
         )}
       </div>
-      <div className="w-60 bg-white shadow rounded-md ">
+      <div className="w-60 flex  items-center  ">
         <Transaksi />
       </div>
     </div>

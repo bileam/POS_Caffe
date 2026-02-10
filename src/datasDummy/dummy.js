@@ -29,7 +29,7 @@ export const menuDummy = [
     name: "French Fries",
     category: "Makanan Ringan",
     price: 15000,
-    stock: 0,
+    stock: 1,
     rating: 4,
     image: gambar3,
   },
