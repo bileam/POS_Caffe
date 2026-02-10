@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import Loading from "../components/Loading";
 import Transaksi from "../components/Transaksi";
 
-const Dashboard = () => {
+const Chasir = () => {
   const [datas, setDatas] = useState([]);
   const [loading, setLoading] = useState(true);
   // const getAll = () => {
@@ -53,4 +53,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Chasir;
