@@ -17,7 +17,7 @@ const Modal = ({ isOpen, isClose, TotalJenis }) => {
           className="inline-block absolute top-2 active:scale-90 focus:bg-[#b0dec3]  right-3 text-green-600 shadow bg-[#d4e7dc] px-4 py-2 rounded-full"
         >
           X
-        </button>{" "}
+        </button>
       </div>
     </div>
   );

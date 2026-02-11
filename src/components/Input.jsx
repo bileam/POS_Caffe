@@ -6,6 +6,7 @@ const Input = ({
   onChange,
   id,
   className = "",
+  defaultValue,
 }) => {
   return (
     <div className="flex-1 flex flex-col relative ">
@@ -13,6 +14,7 @@ const Input = ({
         className={`${className} w-full  py-1 px-3 peer outline-none border rounded-md  border-[#357c4d]`}
         name={name}
         type={type}
+        defaultValue={defaultValue}
         value={value}
         onChange={onChange}
         id={id}

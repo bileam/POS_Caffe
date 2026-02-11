@@ -7,20 +7,44 @@ export const ProductProvider = ({ children }) => {
   const [listProduct, setListProduct] = useState(menuDummy);
 
   //   mengurangi stock jika ada yang pesan
-
-  const addProduck = (produk) => {
-    setListProduct((prev) => {
-      // jika sudah ada produk
-      const existensi = prev.find((item) => item.id === produk.id);
-      if (existensi) {
-        return prev.map((item) =>
-          item.id === produk.id ? { ...item, qty: item.qty + 1 } : item
-        );
-      }
-      return [...prev, { ...produk, qty: 1 }];
-    });
-    // kalau belum ada
+  const addProduct = (product) => {
+    const namaProduct = listProduct.find((item) => item.name === product.name);
+    if (namaProduct) {
+      return { message: "Nama sudah ada", status: 402 };
+    }
+    setListProduct((prev) => [...prev, { ...product, id: Date.now() }]);
+    return {
+      message: "berhasil",
+      status: 200,
+    };
   };
+
+  // read data by id
+
+  const ReadProductById = (id) => {
+    const readProduct = listProduct.find((item) => item.id === id);
+    if (readProduct) {
+      return readProduct;
+    }
+  };
+
+  // hapus 1 data
+  const deleteByOne = (id) => {
+    setListProduct((prev) => prev.filter((item) => item.id !== id));
+  };
+
+  // update product
+  const UpdateProduct = (id, product) => {
+    const Byid = listProduct.find((item) => item.id === id);
+    if (!Byid) {
+      return { message: "tidak ada data", status: 400 };
+    }
+    setListProduct((prev) =>
+      prev.map((item) => (item.id === id ? { ...item, ...product } : item))
+    );
+    return { message: "berhasil update", status: 200 };
+  };
+
   const reduceStock = (id, qty = 1) => {
     setListProduct((prev) =>
       prev.map((item) => {
@@ -45,7 +69,15 @@ export const ProductProvider = ({ children }) => {
 
   return (
     <ProductContext.Provider
-      value={{ listProduct, reduceStock, increaseStock, addProduck }}
+      value={{
+        listProduct,
+        reduceStock,
+        increaseStock,
+        addProduct,
+        deleteByOne,
+        ReadProductById,
+        UpdateProduct,
+      }}
     >
       {children}
     </ProductContext.Provider>

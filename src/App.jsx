@@ -6,6 +6,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MainLayout from "./layouts/MainLayout";
 
 import Chasir from "./pages/Chasir";
+import Product from "./pages/Product";
+import Category from "./pages/Category";
+import Report from "./pages/Report";
+import Dashboard from "./pages/dashboard";
 
 const App = () => {
   const [count, setCount] = useState(0);
@@ -14,7 +18,11 @@ const App = () => {
     <Router>
       <Routes>
         <Route path="/" element={<MainLayout />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/produk" element={<Product />} />
+          <Route path="/categori" element={<Category />} />
           <Route path="/kasir" element={<Chasir />} />
+          <Route path="/laporan" element={<Report />} />
         </Route>
       </Routes>
     </Router>

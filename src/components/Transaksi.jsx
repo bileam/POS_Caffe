@@ -26,10 +26,12 @@ const Transaksi = () => {
       <div
         className={`h-80  rounded flex-col flex ${
           Listdata.length === 0 ? "items-center justify-center" : ""
-        }   gap-2  overflow-y-auto no-scrollbar`}
+        }   gap-2  overflow-y-auto no-scrollbar pb-6`}
       >
         {Listdata.length === 0 ? (
-          <p className="text-sm text-gray-400 text-center">Belum ada pesanan</p>
+          <p className="text-sm text-gray-400 text-center ">
+            Belum ada pesanan
+          </p>
         ) : (
           Listdata.map((item) => <OrderMenu key={item.id} datas={item} />)
         )}

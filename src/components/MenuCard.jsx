@@ -44,7 +44,13 @@ const MenuCard = ({ id, datas }) => {
           </h1>
           <h1 className="text-[0.5rem]">⭐⭐⭐</h1>
         </div>
-        <h1 className="text-[0.7rem]">{datas.stock}/stock</h1>
+        <h1
+          className={`text-[0.7rem] ${
+            datas.stock <= 5 ? "text-red-500" : "text-black"
+          } `}
+        >
+          {datas.stock}/stock
+        </h1>
       </div>
     </button>
   );
