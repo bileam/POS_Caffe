@@ -3,10 +3,14 @@ import { CartContext } from "../Context/CartContex";
 import { useContext, useState } from "react";
 import Modal from "./Modal";
 import Input from "./Input";
+import { TransaksiContext } from "../Context/Transaksi";
+
 const Transaksi = () => {
   const { Listdata, deleteAll, deleallSuccessOrder } = useContext(CartContext);
   const [openModal, setOpenModal] = useState(false);
+  const [namaPemesan, setNamaPemesan] = useState("");
   const totalItem = Listdata.reduce((sum, item) => sum + item.qty, 0);
+  const { ListTransaksi, addTransaksi } = useContext(TransaksiContext);
 
   const subTotal = Listdata.reduce(
     (sum, item) => sum + item.price * item.qty,
@@ -15,14 +19,28 @@ const Transaksi = () => {
 
   const total = subTotal;
   const handlePesan = (e) => {
+    if (!namaPemesan) {
+      return alert("masukaan nama pemesan");
+    }
     e.preventDefault();
+    addTransaksi({
+      namaPemesan,
+      items: Listdata,
+    });
+
     deleallSuccessOrder();
     setOpenModal(true);
   };
   return (
     <div className="flex flex-col gap-2  p-3 relative bg-white rounded-md w-full  mb-7">
       <h1 className="font-bold text-[#357c4d]">Current Order</h1>
-      <Input id="namaPemesan">Nama pemesan</Input>
+      <Input
+        id="namaPemesan"
+        value={namaPemesan}
+        onChange={(e) => setNamaPemesan(e.target.value)}
+      >
+        Nama pemesan
+      </Input>
       <div
         className={`h-80  rounded flex-col flex ${
           Listdata.length === 0 ? "items-center justify-center" : ""

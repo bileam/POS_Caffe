@@ -12,6 +12,7 @@ import Title from "../components/Title";
 const Chasir = () => {
   const [datas, setDatas] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
   const { listProduct } = useContext(ProductContext);
   // const getAll = () => {
 
@@ -25,6 +26,11 @@ const Chasir = () => {
       setLoading(false);
     }, 2000);
   }, []);
+
+  // search data
+  const searchData = listProduct.filter((item) =>
+    item.name.toLowerCase().includes(search.toLowerCase())
+  );
   return (
     <div className="flex gap-2 h-screen  ">
       <div className=" flex-1 flex flex-col gap-2 pb-20">

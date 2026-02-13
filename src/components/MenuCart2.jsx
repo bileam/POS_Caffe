@@ -21,7 +21,6 @@ const MenuCard2 = ({ datas }) => {
     image: "",
   });
 
- 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm((prev) => ({
@@ -90,7 +89,6 @@ const MenuCard2 = ({ datas }) => {
 
   return (
     <>
-      {/* CARD */}
       <div
         className="bg-white rounded-lg p-3 hover:scale-105 transition
         flex-[1_1_220px] max-w-[calc(25%-12px)]"
