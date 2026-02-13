@@ -14,9 +14,9 @@ const Modal = ({ isOpen, isClose, TotalJenis }) => {
         <h1 className="text-green-800 font-bold">Pembayaran Berhasil</h1>
         <button
           onClick={isClose}
-          className="inline-block absolute top-2 active:scale-90 focus:bg-[#b0dec3]  right-3 text-green-600 shadow bg-[#d4e7dc] px-4 py-2 rounded-full"
+          className="inline-block absolute bottom-4 active:scale-90 focus:bg-[#b0dec3]   text-green-600 shadow bg-[#d4e7dc] px-4 py-2 rounded-full"
         >
-          X
+          Ok
         </button>
       </div>
     </div>
