@@ -67,6 +67,27 @@ export const ProductProvider = ({ children }) => {
     );
   };
 
+  // filter produck yang tersedia hari ini
+  const amountavailable = () => {
+    const availeble = listProduct.filter((item) => item.stock > 0);
+    return availeble;
+  };
+
+  // cari produck yang stocknya habis
+  const StockLimit = () => {
+    const limitStock = listProduct.filter((item) => item.stock === 0);
+    return limitStock;
+  };
+
+  // menambahkan item
+  const AddStock = (id, qty) => {
+    setListProduct((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, stock: item.stock + qty } : item
+      )
+    );
+  };
+
   return (
     <ProductContext.Provider
       value={{
@@ -77,6 +98,9 @@ export const ProductProvider = ({ children }) => {
         deleteByOne,
         ReadProductById,
         UpdateProduct,
+        amountavailable,
+        StockLimit,
+        AddStock,
       }}
     >
       {children}

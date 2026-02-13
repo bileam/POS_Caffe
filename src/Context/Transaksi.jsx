@@ -37,6 +37,7 @@ export const TransaksiProvider = ({ children }) => {
         if (!itemMap[item.name]) {
           itemMap[item.name] = {
             name: item.name,
+            image: item.image,
             qty: 0,
           };
         }
@@ -70,6 +71,63 @@ export const TransaksiProvider = ({ children }) => {
     );
   };
 
+  // pendapatan perminggu
+  const getWeeklyOmzet = () => {
+    const today = new Date();
+    const result = [];
+    for (let i = 6; i >= 0; i--) {
+      const date = new Date();
+      date.setDate(today.getDate() - i);
+      const label = date.toLocaleDateString("id-ID", { weekday: "short" });
+      const tanggal = date.toLocaleDateString("id-ID");
+      const total = ListTransaksi.filter(
+        (trx) => trx.tanggal === tanggal
+      ).reduce((sum, trx) => sum + trx.total, 0);
+      result.push({ label, total });
+    }
+    return result;
+  };
+
+  // pendapatan perbulan
+  const getMonthlyOmzet = () => {
+    const now = new Date();
+    const month = now.getMonth();
+    const year = now.getFullYear();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    const result = [];
+    for (let day = 1; day <= daysInMonth; day++) {
+      const date = new Date(year, month, day);
+      const tanggal = date.toLocaleDateString("id-ID");
+
+      const total = ListTransaksi.filter(
+        (trx) => trx.tanggal === tanggal
+      ).reduce((sum, trx) => sum + trx.total, 0);
+      result.push({
+        label: day.toString(),
+        total,
+      });
+    }
+
+    return result;
+  };
+
+  // pendapatan pertahun
+  const getYearlyOmzet = () => {
+    const year = new Date().getFullYear();
+    const result = [];
+    for (let month = 0; month < 12; month++) {
+      const label = new Date(year, month).toLocaleDateString("id-ID", {
+        month: "short",
+      });
+      const total = ListTransaksi.filter((trx) => {
+        const [day, m, y] = trx.tanggal.split("/");
+        return Number(m) - 1 === month && Number(y) === year;
+      }).reduce((sum, trx) => sum + trx.total, 0);
+      result.push({ label, total });
+    }
+    return result;
+  };
+
   return (
     <TransaksiContext.Provider
       value={{
@@ -78,6 +136,7 @@ export const TransaksiProvider = ({ children }) => {
         addTransaksi,
         getTotalItemsSoldToday,
         getTotalOmzetToday,
+        getWeeklyOmzet,
       }}
     >
       {children}
