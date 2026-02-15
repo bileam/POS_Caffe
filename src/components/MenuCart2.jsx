@@ -149,9 +149,11 @@ const MenuCard2 = ({ datas }) => {
           name="category"
           value={form.category}
           onChange={handleChange}
-          className="border p-2 rounded-md"
+          className="border p-2 rounded-md w-full outline-none"
         >
-          <option value="">Kategori</option>
+          <option value="" className="">
+            Kategori
+          </option>
           <option value="Makanan">Makanan</option>
           <option value="Minuman">Minuman</option>
           <option value="Burger">Burger</option>

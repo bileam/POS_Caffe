@@ -104,9 +104,7 @@ const Product = () => {
             onChange={(e) => setFilterCategory(e.target.value)}
             className="outline-none border rounded-md px-2"
           >
-            <option value="" disabled>
-              Kategori
-            </option>
+            <option value="">Semua Produk</option>
             <option value="makanan">Makanan</option>
             <option value="minuman">Minuman</option>
             <option value="burger">Burger</option>
@@ -209,7 +207,16 @@ const Product = () => {
           Image URL
         </Input>
 
-        <Button type="submit">Simpan</Button>
+        <div className="flex justify-end ">
+          <button
+            type="submit"
+            className="px-4 py-2 rounded-md
+                bg-[#357c4d] text-white
+                hover:bg-[#2c6a41] transition"
+          >
+            Simpan
+          </button>
+        </div>
       </ModalAdd>
 
       <div

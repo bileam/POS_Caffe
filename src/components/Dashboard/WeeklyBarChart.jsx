@@ -10,7 +10,7 @@ import {
 
 const WeeklyBarChart = ({ data }) => {
   return (
-    <div className="w-full   h-[300px] sm:h-[350px] md:h-[400px] ">
+    <div className="w-full   h-75 sm:h-87.5 md:h-1000 ">
       <ResponsiveContainer width="100%" height="100%">
         <BarChart
           data={data}
@@ -20,8 +20,9 @@ const WeeklyBarChart = ({ data }) => {
           <XAxis dataKey="label" />
           <YAxis />
           <Tooltip formatter={(value) => `Rp ${value.toLocaleString()}`} />
-          <Bar dataKey="total" fill="#d4e7dc" radius={[6, 6, 0, 0]} />
+          <Bar dataKey="total" fill="#357c4d" radius={[6, 6, 0, 0]} />
         </BarChart>
+        s
       </ResponsiveContainer>
     </div>
   );
