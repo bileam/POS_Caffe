@@ -6,10 +6,10 @@ import { ProductContext } from "../Context/ProductContext";
 import Loading from "../components/Loading";
 import Title from "../components/Title";
 import ModalAdd from "../components/ModalAdd";
-
+import { CategoryContext } from "../Context/Categori";
 const Product = () => {
   const { listProduct, addProduct } = useContext(ProductContext);
-
+  const { categori } = useContext(CategoryContext);
   const [loading, setLoading] = useState(true);
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState("");
@@ -105,9 +105,14 @@ const Product = () => {
             className="outline-none border rounded-md px-2"
           >
             <option value="">Semua Produk</option>
-            <option value="makanan">Makanan</option>
+            {categori.map((item, index) => (
+              <option key={index} value={item.name}>
+                {item.name}
+              </option>
+            ))}
+            {/* 
             <option value="minuman">Minuman</option>
-            <option value="burger">Burger</option>
+            <option value="burger">Burger</option> */}
           </select>
 
           {/* SEARCH */}
@@ -163,9 +168,14 @@ const Product = () => {
           <option value="" disabled>
             Kategori
           </option>
-          <option value="makanan">Makanan</option>
-          <option value="minuman">Minuman</option>
-          <option value="burger">Burger</option>
+          {categori.map((item, index) => (
+            <option key={index} value={item.name}>
+              {item.name}
+            </option>
+          ))}
+
+          {/* <option value="minuman">Minuman</option>
+          <option value="burger">Burger</option> */}
         </select>
 
         <Input

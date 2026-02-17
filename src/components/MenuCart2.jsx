@@ -6,10 +6,11 @@ import { useContext, useState } from "react";
 import ModalUpdate from "./ModalUpdate";
 import Input from "./Input";
 import Button from "./Button";
+import { CategoryContext } from "../Context/Categori";
 
 const MenuCard2 = ({ datas }) => {
   const { deleteByOne, UpdateProduct } = useContext(ProductContext);
-
+  const { categori } = useContext(CategoryContext);
   const [isOpen, setOpen] = useState(false);
   const [selectedId, setSelectedId] = useState(null);
   const [form, setForm] = useState({
@@ -154,9 +155,11 @@ const MenuCard2 = ({ datas }) => {
           <option value="" className="">
             Kategori
           </option>
-          <option value="Makanan">Makanan</option>
-          <option value="Minuman">Minuman</option>
-          <option value="Burger">Burger</option>
+          {categori.map((item, index) => (
+            <option key={index} value={item.name}>
+              {item.name}
+            </option>
+          ))}
         </select>
         <Input
           name="price"
@@ -167,7 +170,6 @@ const MenuCard2 = ({ datas }) => {
         >
           Harga
         </Input>
-
         <Input
           name="stock"
           value={form.stock}

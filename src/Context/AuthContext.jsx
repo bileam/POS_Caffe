@@ -5,17 +5,17 @@ export const LoginContext = createContext();
 export const LoginProvider = ({ children }) => {
   const [token, setToken] = useState(null);
 
-  const logintoken = (kodeToken) => {
-    localStorage.setItem("token", token);
-    setToken(kodeToken);
-  };
-
   useEffect(() => {
-    const storeted = localStorage.getItem("token");
-    if (storeted) {
-      setToken(storeted);
+    const exist = localStorage.getItem("token");
+    if (exist) {
+      return setToken(exist);
     }
   }, []);
+
+  const login = (token) => {
+    localStorage.setItem("token", token);
+    setToken(token);
+  };
 
   const logout = () => {
     localStorage.removeItem("token");
@@ -23,7 +23,7 @@ export const LoginProvider = ({ children }) => {
   };
 
   return (
-    <LoginContext.Provider value={(token, logintoken, logout)}>
+    <LoginContext.Provider value={{ token, login, logout }}>
       {children}
     </LoginContext.Provider>
   );
