@@ -16,6 +16,21 @@ export const UserProvider = ({ children }) => {
     setUser((prev) => [...prev, { ...form, id: Date.now() }]);
   };
 
+  const LoginUser = (datas) => {
+    const user = listUser.find(
+      (item) => item.username === datas.username && item.password === password
+    );
+
+    if (!user) {
+      return {
+        statusCode: 401,
+        message: "username dan password salah",
+        status: false,
+      };
+    }
+    return { statusCode: 200, message: "berhasil login", status: true, user };
+  };
+
   const removeALl = () => {
     setUser([]);
     localStorage.removeItem("listUser");
