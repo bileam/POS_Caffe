@@ -11,8 +11,12 @@ export const Login = async (form) => {
 };
 
 export const LoginService = (form) => {
-  if (form.username === "bileam" && form.password === "admin123") {
-    return { message: "berhasil login", status: true };
+  if (form.username === "bileam@gmail.com" && form.password === "admin123") {
+    return {
+      message: "berhasil login",
+      token: "basfsafasisiugafsig",
+      status: true,
+    };
   }
   return { message: "gagal login", status: false };
 };

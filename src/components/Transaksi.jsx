@@ -7,80 +7,87 @@ import { TransaksiContext } from "../Context/Transaksi";
 
 const Transaksi = () => {
   const { Listdata, deleteAll, deleallSuccessOrder } = useContext(CartContext);
+  const { addTransaksi } = useContext(TransaksiContext);
   const [openModal, setOpenModal] = useState(false);
   const [namaPemesan, setNamaPemesan] = useState("");
-  const totalItem = Listdata.reduce((sum, item) => sum + item.qty, 0);
-  const { ListTransaksi, addTransaksi } = useContext(TransaksiContext);
 
   const subTotal = Listdata.reduce(
     (sum, item) => sum + item.price * item.qty,
     0
   );
 
-  const total = subTotal;
   const handlePesan = (e) => {
-    if (!namaPemesan) {
-      return alert("masukaan nama pemesan");
-    }
     e.preventDefault();
-    addTransaksi({
-      namaPemesan,
-      items: Listdata,
-    });
+    if (!namaPemesan) return alert("Masukkan nama pemesan");
 
+    addTransaksi({ namaPemesan, items: Listdata });
     deleallSuccessOrder();
     setOpenModal(true);
   };
+
   return (
-    <div className="flex flex-col gap-2  p-3 relative bg-white rounded-md w-full  mb-7">
-      <h1 className="font-bold text-[#357c4d]">Current Order</h1>
-      <Input
-        id="namaPemesan"
-        value={namaPemesan}
-        onChange={(e) => setNamaPemesan(e.target.value)}
-      >
-        Nama pemesan
-      </Input>
-      <div
-        className={`h-80  rounded flex-col flex ${
-          Listdata.length === 0 ? "items-center justify-center" : ""
-        }   gap-2  overflow-y-auto no-scrollbar pb-6`}
-      >
+    <div className="w-full h-full min-h-0 bg-white rounded-xl  shadow-lg flex flex-col">
+      {/* HEADER */}
+      <div className="p-4 border-b sticky top-0 bg-white z-10 rounded-xl">
+        <h1 className="text-lg font-bold text-[#357c4d]">🧾 Current Order</h1>
+      </div>
+
+      {/* NAMA PEMESAN */}
+      <div className="p-4">
+        <Input
+          id="namaPemesan"
+          value={namaPemesan}
+          onChange={(e) => setNamaPemesan(e.target.value)}
+        >
+          Nama Pemesan
+        </Input>
+      </div>
+
+      {/* LIST ORDER */}
+      <div className="flex-1 overflow-y-auto px-4 pb-4 space-y-2">
         {Listdata.length === 0 ? (
-          <p className="text-sm text-gray-400 text-center ">
+          <div className="h-full flex items-center justify-center text-gray-400 text-sm">
             Belum ada pesanan
-          </p>
+          </div>
         ) : (
           Listdata.map((item) => <OrderMenu key={item.id} datas={item} />)
         )}
       </div>
-      <div className="flex flex-col gap-2  bottom-0">
-        <div className="flex justify-between text-[0.9rem]">
-          <h1>total</h1>
-          <p>Rp {total.toLocaleString("id-ID")}</p>
+
+      {/* RINGKASAN */}
+      <div className="border-t p-4 space-y-2 bg-gray-50">
+        <div className="flex justify-between text-sm text-gray-600">
+          <span>Subtotal</span>
+          <span>Rp {subTotal.toLocaleString("id-ID")}</span>
         </div>
-        <div className="flex justify-between text-[0.9rem] text-[#357c4d]">
-          <h1>Sub Total</h1>
-          <p>Rp {subTotal.toLocaleString("id-ID")}</p>
+
+        <div className="flex justify-between font-bold text-lg text-[#357c4d]">
+          <span>Total</span>
+          <span>Rp {subTotal.toLocaleString("id-ID")}</span>
         </div>
-        <div className="flex justify-between gap-2  ">
+
+        {/* ACTION */}
+        <div className="flex gap-2 mt-3">
           <button
-            onClick={() => deleteAll()}
-            className="p-2 border bg-red-500 text-white rounded-md cursor-pointer"
+            onClick={deleteAll}
+            className="w-1/3 py-2 rounded-md bg-red-100 text-red-600 hover:bg-red-200 transition"
           >
-            Riset
+            Reset
           </button>
+
           <button
             disabled={Listdata.length === 0}
             onClick={handlePesan}
-            className="p-2 border bg-[#d4e7dc] text-green-700  flex-1 rounded-md cursor-pointer"
+            className="flex-1 py-2 rounded-md bg-[#357c4d] text-white font-semibold hover:bg-[#2e6841] transition disabled:opacity-50"
           >
-            Payment
+            💳 Payment
           </button>
         </div>
       </div>
+
       <Modal isOpen={openModal} isClose={() => setOpenModal(false)} />
     </div>
   );
 };
+
 export default Transaksi;

@@ -9,7 +9,7 @@ const Category = () => {
   });
   const { CategoryAdd, categori, DeleteCategoryById, UpdateCategoryById } =
     useContext(CategoryContext);
-  console.log(categori);
+  // console.log(categori);
   const handleSubmit = (e) => {
     e.preventDefault();
     try {
@@ -33,8 +33,8 @@ const Category = () => {
         <table className=" w-full">
           <thead>
             <tr className="text-center shadow bg-[#d4e7dc] rounded-md p-2 text-[#357c4d]">
-              <th>No</th>
-              <th>Name Categories</th>
+              <th className="p-2">No</th>
+              <th className="p-2">Name Categories</th>
             </tr>
           </thead>
           <tbody className="text-center w-full">

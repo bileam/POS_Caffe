@@ -10,6 +10,8 @@ import Product from "./pages/Product";
 import Category from "./pages/Category";
 import Report from "./pages/Report";
 import Dashboard from "./pages/dashboard";
+import Login from "./pages/Login";
+import Protected from "./routes/ProtedRoutes";
 
 const App = () => {
   const [count, setCount] = useState(0);
@@ -17,7 +19,15 @@ const App = () => {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<MainLayout />}>
+        <Route path="/login" element={<Login />} />
+        <Route
+          path="/"
+          element={
+            <Protected>
+              <MainLayout />
+            </Protected>
+          }
+        >
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/produk" element={<Product />} />
           <Route path="/categori" element={<Category />} />
