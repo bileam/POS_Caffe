@@ -12,7 +12,7 @@ const MenuCard = ({ id, datas }) => {
       onClick={() => addCart(datas)}
       key={id}
       className={`
-      bg-white rounded-lg    p-3
+      bg-white border border-[#357c4d] shadow shadow-[#357c4d] rounded-lg    p-3
       flex-[1_1_220px]
       max-w-[calc(25%-12px)] ${
         datas.stock === 0
@@ -35,7 +35,6 @@ const MenuCard = ({ id, datas }) => {
           <h1 className="-rotate-45 text-[1.2rem]">Kosong</h1>
         </div>
       </div>
-
       <div className="space-y-1 text-start">
         <h1 className="font-bold max-w-45">{datas.name}</h1>
         <div className="flex justify-between items-center">
