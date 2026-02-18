@@ -35,7 +35,7 @@ const Chasir = () => {
     <div className="flex gap-2 h-[calc(100vh-64px)] bg-gray-100 p-2">
       {/* MENU */}
       <div className="flex-1 flex flex-col gap-2 overflow-hidden">
-        <div className="bg-white rounded-lg p-2 flex gap-2 items-center">
+        <div className=" rounded-lg p-2 flex gap-2 items-center">
           <Button active>Semua kategori</Button>
           <Button>Makanan</Button>
           <Button>Minuman</Button>

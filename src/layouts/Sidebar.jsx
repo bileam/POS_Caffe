@@ -5,7 +5,9 @@ import icon2 from "../assets/Icons/kategori_1.svg";
 import icon3 from "../assets/Icons/menu_1.svg";
 import icon4 from "../assets/Icons/order_1.svg";
 import icon5 from "../assets/Icons/report_1.svg";
-import logout from "../assets/Icons/logout.svg";
+import keluar from "../assets/Icons/logout.svg";
+import riwayat from "../assets/Icons/riwayatOrder.svg";
+
 import { LoginContext } from "../Context/AuthContext";
 const Sidebar = () => {
   const [burger, setBurger] = useState(true);
@@ -147,6 +149,34 @@ const Sidebar = () => {
           </div>
         </NavLink>
         <NavLink
+          to="/riwayat"
+          className={({ isActive }) =>
+            `
+    flex gap-2 relative group items-center text-[0.9rem] rounded-md p-2 transition-all duration-300
+    ${isActive ? "bg-[#d4e7dc]" : "hover:bg-[#d4e7dc]"}
+  `
+          }
+        >
+          <img src={riwayat} alt="" className="z-10" />
+          <div className="overflow-hidden ">
+            <span
+              className={` 
+        inline-block whitespace-nowrap
+        transition-all duration-500 ease-in-out
+           
+        ${
+          burger
+            ? "opacity-0 -translate-x-15  text-[#357c4d] bg-[#d4e7dc]  group-hover:opacity-100 px-2 rounded-md  group-hover:left-12   top-2 group-hover:translate-x-0 absolute "
+            : "opacity-100 translate-x-0 text-[#357c4d]  "
+        }
+        
+      `}
+            >
+              Riwayat Transaksi
+            </span>
+          </div>
+        </NavLink>
+        <NavLink
           to="/laporan"
           className={({ isActive }) =>
             `
@@ -183,7 +213,7 @@ const Sidebar = () => {
     hover:bg-[#d4e7dc] cursor-pointer
   `}
       >
-        <img src={logout} alt="logout" className="z-10" />
+        <img src={keluar} alt="logout" className="z-10" />
 
         <div className="overflow-hidden">
           <span

@@ -128,6 +128,16 @@ export const TransaksiProvider = ({ children }) => {
     return result;
   };
 
+  // menampilkan detail transaksi berdasarkan id
+  const transaksiById = (id) => {
+    const lastTransaksi = ListTransaksi[ListTransaksi.length - 1];
+
+    return {
+      datas: lastTransaksi?.items || [],
+      message: "berhasil",
+    };
+  };
+
   return (
     <TransaksiContext.Provider
       value={{
@@ -137,6 +147,7 @@ export const TransaksiProvider = ({ children }) => {
         getTotalItemsSoldToday,
         getTotalOmzetToday,
         getWeeklyOmzet,
+        transaksiById,
       }}
     >
       {children}

@@ -12,6 +12,7 @@ import Report from "./pages/Report";
 import Dashboard from "./pages/dashboard";
 import Login from "./pages/Login";
 import Protected from "./routes/ProtedRoutes";
+import RiwayatTransaksi from "./pages/RiwayatTransaksi";
 
 const App = () => {
   const [count, setCount] = useState(0);
@@ -32,6 +33,7 @@ const App = () => {
           <Route path="/produk" element={<Product />} />
           <Route path="/categori" element={<Category />} />
           <Route path="/kasir" element={<Chasir />} />
+          <Route path="/riwayat" element={<RiwayatTransaksi />} />
           <Route path="/laporan" element={<Report />} />
         </Route>
       </Routes>
