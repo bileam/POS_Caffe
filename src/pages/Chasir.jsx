@@ -32,32 +32,27 @@ const Chasir = () => {
     item.name.toLowerCase().includes(search.toLowerCase())
   );
   return (
-    <div className="flex gap-2 h-screen  ">
-      <div className=" flex-1 flex flex-col gap-2 pb-20">
-        <div className="rounded flex gap-2 items-center p-2">
-          <Button active={true}>Semua kategori</Button>
+    <div className="flex gap-2 h-[calc(100vh-64px)] bg-gray-100 p-2">
+      {/* MENU */}
+      <div className="flex-1 flex flex-col gap-2 overflow-hidden">
+        <div className="bg-white rounded-lg p-2 flex gap-2 items-center">
+          <Button active>Semua kategori</Button>
           <Button>Makanan</Button>
           <Button>Minuman</Button>
-          <Input id="cari" name="cari" type="search" className="flex-1">
+          <Input className="flex-1" type="search">
             Cari Menu
           </Input>
         </div>
-        {loading ? (
-          <div className="flex flex-wrap gap-4 w-full overflow-y-auto no-scrollbar  ">
-            {listProduct.map((_, index) => (
-              <Loading />
-            ))}
-          </div>
-        ) : (
-          <div className="flex flex-wrap gap-4 w-full overflow-y-auto no-scrollbar ">
-            {listProduct.map((item, index) => (
-              <MenuCard id={index} datas={item} />
-              // <Loading />
-            ))}
-          </div>
-        )}
+
+        <div className="flex-1 flex flex-wrap gap-4 overflow-y-auto no-scrollbar p-2">
+          {loading
+            ? Array.from({ length: 8 }).map((_, i) => <Loading key={i} />)
+            : listProduct.map((item, i) => <MenuCard key={i} datas={item} />)}
+        </div>
       </div>
-      <div className="w-60 flex  items-center  ">
+
+      {/* TRANSAKSI */}
+      <div className="w-70 h-full shrink-0">
         <Transaksi />
       </div>
     </div>
