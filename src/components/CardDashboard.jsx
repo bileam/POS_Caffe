@@ -9,7 +9,7 @@ const CardDashboard = ({
     <div
       className="
         bg-white px-3 py-4 flex-1 rounded-md 
-        flex gap-2 items-center
+        flex gap-2 items-center border border-[#357c4d]
         outline-none ring-0 focus:outline-none focus:ring-0
         select-none
       "
