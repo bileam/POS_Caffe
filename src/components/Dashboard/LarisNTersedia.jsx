@@ -1,7 +1,7 @@
 import gambar from "../../assets/DummyMenu/gambar_7.jpeg";
 const LarisNTersedia = ({ img, index, dataName, dataItem }) => {
   return (
-    <div className="flex  gap-3  p-2 rounded-md  shadow shadow-[#d4e7dc]">
+    <div className="flex  gap-3  p-2 rounded-md  shadow shadow-[#d4e7dc] border border-[#357c4d]">
       <h1 className="p-2 my-auto rounded-full bg-[#d4e7dc] font-bold ">
         {index + 1 || 0}
       </h1>
