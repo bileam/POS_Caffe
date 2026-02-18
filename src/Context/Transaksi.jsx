@@ -1,9 +1,16 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const TransaksiContext = createContext();
 
 export const TransaksiProvider = ({ children }) => {
-  const [ListTransaksi, setTransaksi] = useState([]);
+  // const [ListTransaksi, setTransaksi] = useState([]);
+  const [ListTransaksi, setTransaksi] = useState(() => {
+    const saved = localStorage.getItem("listTransaksi");
+    return saved ? JSON.parse(saved) : [];
+  });
+  useEffect(() => {
+    localStorage.setItem("listTransaksi", JSON.stringify(ListTransaksi));
+  }, [ListTransaksi]);
 
   const addTransaksi = ({ namaPemesan, items }) => {
     const now = new Date();
@@ -136,6 +143,12 @@ export const TransaksiProvider = ({ children }) => {
       datas: lastTransaksi?.items || [],
       message: "berhasil",
     };
+  };
+
+  // clear transaksi
+  const clearTransaksi = () => {
+    setTransaksi([]);
+    localStorage.removeItem("listTransaksi");
   };
 
   return (

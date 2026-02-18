@@ -34,8 +34,8 @@ const Login = () => {
   };
 
   return (
-    <div className="h-screen flex items-center justify-center">
-      <div className="p-5 bg-white shadow shadow-[#357c4d] rounded-md w-100 flex flex-col gap-5">
+    <div className="h-screen bg-[#357c4d] flex items-center justify-center">
+      <div className="p-5 bg-[#d4e7dc] border border-[#357c4d] shadow shadow-[#357c4d] rounded-md w-100 flex flex-col gap-5">
         <h1 className="text-center text-[1.2rem] text-[#357c4d] font-bold">
           Login
         </h1>
