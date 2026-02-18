@@ -4,6 +4,7 @@ import Input from "../components/Input";
 import { LoginService } from "../Services/LoginService";
 import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../Context/AuthContext";
+import person from "../assets/personal01.jpg";
 
 const Login = () => {
   const [form, setForm] = useState({
@@ -39,6 +40,12 @@ const Login = () => {
         <h1 className="text-center text-[1.2rem] text-[#357c4d] font-bold">
           Login
         </h1>
+        <div className="flex justify-center text-[0.9rem] flex-col gap-2 items-center ">
+          {/* <img src={person} alt="" className="w-20 object-cover rounded-full" /> */}
+          <h1 className="flex-wrap text-center">
+            hallo Admin lor Lorem ipsum dolor sit amet. Lorem ipsum dolor sit.
+          </h1>
+        </div>
         <form onSubmit={handleSubmit} action="" className="  ">
           <div className="flex flex-col gap-4">
             <Input
