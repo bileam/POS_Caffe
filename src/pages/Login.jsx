@@ -5,15 +5,19 @@ import { LoginService } from "../Services/LoginService";
 import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../Context/AuthContext";
 import person from "../assets/personal01.jpg";
+import { userContext } from "../Context/UserContext";
 
 const Login = () => {
   const [form, setForm] = useState({
     username: "",
     password: "",
   });
+  const { listUser, addUser, removeALl, LoginUser } = useContext(userContext);
   const navigasi = useNavigate();
+
   const { login } = useContext(LoginContext);
   const handleChange = (e) => {
+    e.preventDefault();
     const { name, value } = e.target;
     setForm((prev) => ({
       ...prev,
@@ -24,13 +28,19 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     try {
-      console.log(form);
-      const res = LoginService(form);
-      login(res.token);
-      console.log(res);
+      const result = LoginUser(form);
+      if (!result?.status) {
+        console.log(result?.message || "Login gagal");
+        return;
+      }
+
+      // simpan token (atau user) ke auth context
+      login(result.token);
+      console.log("Token:", result.token);
       navigasi("/dashboard");
     } catch (error) {
-      alert("ada kesalahan");
+      console.error(error);
+      alert("Terjadi kesalahan saat login");
     }
   };
 
@@ -69,8 +79,14 @@ const Login = () => {
           </div>
           {/* <h1 className="text-[0.8rem]">lupa password?</h1> */}
           <h1 className="text-[0.8rem]">
-            Belum punya akun?{" "}
-            <button className="cursor-pointer text-blue-600">register</button>{" "}
+            Belum punya akun?
+            <button
+              type="button"
+              onClick={() => navigasi("/register")}
+              className="cursor-pointer text-blue-600"
+            >
+              register
+            </button>
             dulu
           </h1>
           <div className="flex items-center mt-2 justify-center">
