@@ -12,6 +12,8 @@ const Login = () => {
     username: "",
     password: "",
   });
+  const [mess, setMess] = useState("");
+  const [open, setOpen] = useState(false);
   const { listUser, addUser, removeALl, LoginUser } = useContext(userContext);
   const navigasi = useNavigate();
 
@@ -30,17 +32,26 @@ const Login = () => {
     try {
       const result = LoginUser(form);
       if (!result?.status) {
-        console.log(result?.message || "Login gagal");
+        // console.log(result?.message || "Login gagal");
+        setMess(result.message);
+        setOpen(true);
+        setTimeout(() => {
+          setOpen(false);
+        }, 2000);
         return;
       }
 
       // simpan token (atau user) ke auth context
       login(result.token);
-      console.log("Token:", result.token);
+      // console.log("Token:", result.token);
       navigasi("/dashboard");
     } catch (error) {
-      console.error(error);
-      alert("Terjadi kesalahan saat login");
+      // console.error(error);
+      setMess("Terjadi kesalahan saat login");
+      setOpen(true);
+      setTimeout(() => {
+        setOpen(false);
+      }, 2000);
     }
   };
 
@@ -79,15 +90,15 @@ const Login = () => {
           </div>
           {/* <h1 className="text-[0.8rem]">lupa password?</h1> */}
           <h1 className="text-[0.8rem]">
-            Belum punya akun?
+            Belum punya akun?{" "}
             <button
               type="button"
               onClick={() => navigasi("/register")}
               className="cursor-pointer text-blue-600"
             >
               register
-            </button>
-            dulu
+            </button>{" "}
+              dulu
           </h1>
           <div className="flex items-center mt-2 justify-center">
             <Button type="submit" className="">
@@ -95,6 +106,13 @@ const Login = () => {
             </Button>
           </div>
         </form>
+      </div>
+      <div
+        className={`fixed ${
+          open ? "top-2" : "-top-10"
+        } bg-[#d4e7dc] rounded-md border-[#357c4d] border transition-all duration-500 ease-in-out px-2 py-2`}
+      >
+        <p className="text-[#357c4d] text-[0.9rem] ">{mess}</p>
       </div>
     </div>
   );
