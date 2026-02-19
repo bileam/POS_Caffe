@@ -4,36 +4,53 @@ import { CategoryDammy } from "../datasDummy/Category";
 export const CategoryContext = createContext();
 
 export const CategoryProvider = ({ children }) => {
-  const [categori, setCategori] = useState(CategoryDammy);
+  const [categori, setCategori] = useState(
+    Array.isArray(CategoryDammy) ? CategoryDammy : []
+  );
 
   const CategoryAdd = (datas) => {
     if (!datas.name) {
-      return {
-        status: 404,
-        message: "isi data terlebih dahulu",
-      };
+      return { status: false, message: "isi data terlebih dahulu" };
     }
-    const namedatas = categori.find((item) => item.name === datas.name);
-    if (namedatas) {
-      return {
-        status: 402,
-        message: "data sudah ada",
-      };
+
+    const exists = categori.find(
+      (item) => item.name.toLowerCase() === datas.name.toLowerCase()
+    );
+
+    if (exists) {
+      return { status: false, message: "data sudah ada" };
     }
+
     setCategori((prev) => [...prev, { ...datas, id: Date.now() }]);
-    return {
-      status: 200,
-      message: "successAdd Datas",
-      data: datas,
-    };
+
+    return { status: true, message: "berhasil menambah kategori" };
   };
 
-  const DeleteCategoryById = (id) => {};
-  const UpdateCategoryById = (id, datas) => {};
+  const DeleteCategoryById = (id) => {
+    setCategori((prev) => prev.filter((item) => item.id !== id));
+  };
+
+  const UpdateCategoryById = (id, datas) => {
+    const byId = categori.find((item) => item.id === id);
+    if (!byId) {
+      return { status: false, message: "id tidak terdaftar" };
+    }
+
+    setCategori((prev) =>
+      prev.map((item) => (item.id === id ? { ...item, ...datas } : item))
+    );
+
+    return { status: true, message: "berhasil update data" };
+  };
 
   return (
     <CategoryContext.Provider
-      value={{ CategoryAdd, categori, DeleteCategoryById, UpdateCategoryById }}
+      value={{
+        categori,
+        CategoryAdd,
+        DeleteCategoryById,
+        UpdateCategoryById,
+      }}
     >
       {children}
     </CategoryContext.Provider>

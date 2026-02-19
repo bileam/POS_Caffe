@@ -49,6 +49,7 @@ const MenuCard2 = ({ datas }) => {
     console.log(res);
     setOpen(false);
   };
+  console.log(datas);
 
   const DataInput = [
     {
@@ -109,12 +110,11 @@ const MenuCard2 = ({ datas }) => {
           </div>
 
           <h1 className="font-bold">{datas.name}</h1>
-
+          <span className="text-xs">{datas.category}</span>
           <div className="flex justify-between">
             <span className="text-[#357c4d] font-bold">Rp {datas.price}</span>
             <span className="text-xs">⭐⭐⭐⭐⭐</span>
           </div>
-
           <div className="flex justify-between items-center">
             <span className="text-xs">{datas.stock} / stock</span>
             <div className="flex gap-3">
@@ -145,7 +145,6 @@ const MenuCard2 = ({ datas }) => {
         >
           Nama Menu
         </Input>
-
         <select
           name="category"
           value={form.category}
