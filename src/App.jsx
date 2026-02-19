@@ -13,6 +13,7 @@ import Dashboard from "./pages/dashboard";
 import Login from "./pages/Login";
 import Protected from "./routes/ProtedRoutes";
 import RiwayatTransaksi from "./pages/RiwayatTransaksi";
+import Register from "./pages/Registes";
 
 const App = () => {
   const [count, setCount] = useState(0);
@@ -20,6 +21,7 @@ const App = () => {
   return (
     <Router>
       <Routes>
+        <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
         <Route
           path="/"

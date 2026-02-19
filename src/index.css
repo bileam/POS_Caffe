@@ -7,6 +7,17 @@ body {
   font-family: Georgia, "Times New Roman", Times, serif;
 }
 
+@layer components {
+  .center {
+    @apply flex items-center justify-center h-screen;
+  }
+  .row {
+    @apply flex flex-row;
+  }
+  .coloms {
+    @apply flex flex-col;
+  }
+}
 /* Hide scrollbar but keep scroll */
 .no-scrollbar::-webkit-scrollbar {
   display: none;

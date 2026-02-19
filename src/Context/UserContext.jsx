@@ -13,12 +13,23 @@ export const UserProvider = ({ children }) => {
   }, [listUser]);
 
   const addUser = (form) => {
-    setUser((prev) => [...prev, { ...form, id: Date.now() }]);
+    setUser((prev) => [
+      ...prev,
+      { ...form, id: Date.now(), token: Date.now() },
+    ]);
+
+    return {
+      status: true,
+      statusCode: 200,
+      message: "data berhasil di input",
+      form,
+    };
   };
 
   const LoginUser = (datas) => {
     const user = listUser.find(
-      (item) => item.username === datas.username && item.password === password
+      (item) =>
+        item.username === datas.username && item.password === datas.password
     );
 
     if (!user) {
@@ -28,7 +39,15 @@ export const UserProvider = ({ children }) => {
         status: false,
       };
     }
-    return { statusCode: 200, message: "berhasil login", status: true, user };
+
+    return {
+      id: user.id,
+      token: user.token,
+      statusCode: 200,
+      message: "berhasil login",
+      status: true,
+      user,
+    };
   };
 
   const removeALl = () => {
@@ -37,7 +56,7 @@ export const UserProvider = ({ children }) => {
   };
 
   return (
-    <userContext.Provider value={{ listUser, addUser, removeALl }}>
+    <userContext.Provider value={{ listUser, addUser, removeALl, LoginUser }}>
       {children}
     </userContext.Provider>
   );
