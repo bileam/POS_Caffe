@@ -26,6 +26,11 @@ export const UserProvider = ({ children }) => {
     };
   };
 
+  const DataByToken = (token) => {
+    const data = listUser.find((item) => item.token === token);
+    return data;
+  };
+
   const LoginUser = (datas) => {
     const user = listUser.find(
       (item) =>
@@ -56,7 +61,9 @@ export const UserProvider = ({ children }) => {
   };
 
   return (
-    <userContext.Provider value={{ listUser, addUser, removeALl, LoginUser }}>
+    <userContext.Provider
+      value={{ listUser, addUser, removeALl, LoginUser, DataByToken }}
+    >
       {children}
     </userContext.Provider>
   );
