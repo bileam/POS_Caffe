@@ -7,6 +7,7 @@ import icon4 from "../assets/Icons/order_1.svg";
 import icon5 from "../assets/Icons/report_1.svg";
 import keluar from "../assets/Icons/logout.svg";
 import riwayat from "../assets/Icons/riwayatOrder.svg";
+import Burger from "../assets/Icons/Burger.svg";
 
 import { LoginContext } from "../Context/AuthContext";
 const Sidebar = () => {
@@ -33,7 +34,7 @@ const Sidebar = () => {
               burger ? "rotate-0 delay-500" : "rotate-180 delay-500"
             } translate-x-9 p-2 text-white shadow transition-all duration-700 ease-in-out cursor-pointer focus:scale-95 active:scale-90  flex flex-col gap-2`}
           >
-            {"->"}
+            <img src={Burger} alt="" />
           </button>
         </div>
         <NavLink
