@@ -61,6 +61,7 @@ const Chart = () => {
                 2500, // turun
                 9000, // naik
               ],
+              color: "#16a34a",
               area: true,
             },
           ]}
