@@ -19,18 +19,14 @@ const App = () => {
   const [count, setCount] = useState(0);
 
   return (
+    //   <Protected>
+    //   <MainLayout />
+    // </Protected>
     <Router>
       <Routes>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        <Route
-          path="/"
-          element={
-            <Protected>
-              <MainLayout />
-            </Protected>
-          }
-        >
+        <Route path="/" element={<MainLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/produk" element={<Product />} />
           <Route path="/categori" element={<Category />} />

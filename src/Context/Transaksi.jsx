@@ -151,6 +151,12 @@ export const TransaksiProvider = ({ children }) => {
     localStorage.removeItem("listTransaksi");
   };
 
+  // keuntungan hari ini
+  const getProfitToday = () => {
+    const tanggalHariINi = new Date().toISOString().slice(0, 10);
+    let profit = 0;
+  };
+
   return (
     <TransaksiContext.Provider
       value={{
