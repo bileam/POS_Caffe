@@ -98,7 +98,7 @@ const Login = () => {
             >
               register
             </button>{" "}
-              dulu
+            dulu
           </h1>
           <div className="flex items-center mt-2 justify-center">
             <Button type="submit" className="">
