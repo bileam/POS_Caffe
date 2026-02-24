@@ -10,7 +10,7 @@ const ModalUpdate = ({ isOpen, onClose, children, onSubmit, title }) => {
       <div
         onClick={(e) => e.stopPropagation()}
         className="
-            w-full max-w-xl
+            w-full max-w-xl modalOpen
             bg-white rounded-2xl shadow-xl
             transition-all duration-200
           "

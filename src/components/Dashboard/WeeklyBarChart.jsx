@@ -22,7 +22,6 @@ const WeeklyBarChart = ({ data }) => {
           <Tooltip formatter={(value) => `Rp ${value.toLocaleString()}`} />
           <Bar dataKey="total" fill="#357c4d" radius={[6, 6, 0, 0]} />
         </BarChart>
-        s
       </ResponsiveContainer>
     </div>
   );
