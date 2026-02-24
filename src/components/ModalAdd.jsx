@@ -7,7 +7,7 @@ const ModalAdd = ({ isOpen, OnClose, children, title, onSubmit }) => {
     >
       <div
         onClick={(e) => e.stopPropagation()}
-        className="p-5 bg-white rounded-md flex flex-col gap-3 relative max-w-[70%]"
+        className="p-5 bg-white modalOpen rounded-md flex flex-col gap-3 relative max-w-[70%]"
       >
         <div className="flex justify-between">
           <h1 className="font-bold text-[1.1rem]  max-w-40">{title}</h1>
