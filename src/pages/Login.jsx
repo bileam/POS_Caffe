@@ -5,7 +5,7 @@ import { LoginService } from "../Services/LoginService";
 import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../Context/AuthContext";
 import person from "../assets/personal01.jpg";
-import { userContext } from "../Context/UserContext";
+import { UserContext } from "../Context/UserContext";
 import Glow from "../components/Efek/glow";
 import TopGlow from "../components/Efek/TopGlow";
 
@@ -16,7 +16,7 @@ const Login = () => {
   });
   const [mess, setMess] = useState("");
   const [open, setOpen] = useState(false);
-  const { listUser, addUser, removeALl, LoginUser } = useContext(userContext);
+  const { listUser, addUser, removeALl, LoginUser } = useContext(UserContext);
   const navigasi = useNavigate();
 
   const { login } = useContext(LoginContext);
@@ -46,7 +46,7 @@ const Login = () => {
       // simpan token (atau user) ke auth context
       login(result.token);
       // console.log("Token:", result.token);
-      navigasi("/dashboard");
+      navigasi("/login");
     } catch (error) {
       // console.error(error);
       setMess("Terjadi kesalahan saat login");

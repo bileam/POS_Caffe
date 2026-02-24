@@ -1,17 +1,19 @@
 import { useContext, useState } from "react";
 import Button from "../components/Button";
 import Input from "../components/Input";
-import { userContext } from "../Context/UserContext";
+import { UserContext } from "../Context/UserContext";
 import { useNavigate } from "react-router-dom";
+import { LoginContext } from "../Context/AuthContext";
 
 const Register = () => {
-  const { addUser } = useContext(userContext);
+  const { addUser } = useContext(UserContext);
   const navigasi = useNavigate();
   const [form, setForm] = useState({
     fullname: "",
     username: "",
     password: "",
   });
+  const { login } = useContext(LoginContext);
 
   const [open, setOpen] = useState(false);
   const [message, setMessage] = useState("");
@@ -36,9 +38,10 @@ const Register = () => {
       return setMessage("isi semua data terlebih dahulu");
     }
     const res = addUser(form);
+    login(res.token);
     // console.log(res);
     if (res) {
-      return navigasi("/login");
+      return navigasi("/dashboard");
     }
     // setOpen(true);
     // setMessage(res.message);

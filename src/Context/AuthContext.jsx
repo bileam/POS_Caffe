@@ -4,17 +4,19 @@ export const LoginContext = createContext();
 
 export const LoginProvider = ({ children }) => {
   const [token, setToken] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const exist = localStorage.getItem("token");
     if (exist) {
-      return setToken(exist);
+      setToken(exist);
     }
+    setLoading(false);
   }, []);
 
-  const login = (token) => {
-    localStorage.setItem("token", token);
-    setToken(token);
+  const login = (newToken) => {
+    localStorage.setItem("token", newToken);
+    setToken(newToken);
   };
 
   const logout = () => {
@@ -22,8 +24,10 @@ export const LoginProvider = ({ children }) => {
     setToken(null);
   };
 
+  
+
   return (
-    <LoginContext.Provider value={{ token, login, logout }}>
+    <LoginContext.Provider value={{ token, login, logout, loading }}>
       {children}
     </LoginContext.Provider>
   );

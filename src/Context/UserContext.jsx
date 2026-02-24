@@ -1,9 +1,9 @@
 import { createContext, useEffect, useState } from "react";
 
-export const userContext = createContext();
+export const UserContext = createContext();
+
 export const UserProvider = ({ children }) => {
-  //   const [listUser, setUser] = useState([]);
-  const [listUser, setUser] = useState(() => {
+  const [listUser, setListUser] = useState(() => {
     const saved = localStorage.getItem("listUser");
     return saved ? JSON.parse(saved) : [];
   });
@@ -12,25 +12,29 @@ export const UserProvider = ({ children }) => {
     localStorage.setItem("listUser", JSON.stringify(listUser));
   }, [listUser]);
 
+  // REGISTER USER
   const addUser = (form) => {
-    setUser((prev) => [
+    const token = Date.now().toString(); // ✅ STRING
+
+    setListUser((prev) => [
       ...prev,
-      { ...form, id: Date.now(), token: Date.now() },
+      {
+        id: Date.now(),
+        fullname: form.fullname,
+        username: form.username,
+        password: form.password,
+        token,
+      },
     ]);
 
     return {
       status: true,
-      statusCode: 200,
-      message: "data berhasil di input",
-      form,
+      message: "User berhasil ditambahkan",
+      token,
     };
   };
 
-  const DataByToken = (token) => {
-    const data = listUser.find((item) => item.token === token);
-    return data;
-  };
-
+  // LOGIN USER
   const LoginUser = (datas) => {
     const user = listUser.find(
       (item) =>
@@ -39,32 +43,34 @@ export const UserProvider = ({ children }) => {
 
     if (!user) {
       return {
-        statusCode: 401,
-        message: "username dan password salah",
         status: false,
+        message: "Username atau password salah",
       };
     }
 
     return {
-      id: user.id,
-      token: user.token,
-      statusCode: 200,
-      message: "berhasil login",
       status: true,
+      token: user.token,
       user,
     };
   };
 
-  const removeALl = () => {
-    setUser([]);
+  // AMBIL USER BERDASARKAN TOKEN
+  const DataByToken = (token) => {
+    if (!token) return null;
+    return listUser.find((item) => item.token === token) || null;
+  };
+
+  const removeAll = () => {
+    setListUser([]);
     localStorage.removeItem("listUser");
   };
 
   return (
-    <userContext.Provider
-      value={{ listUser, addUser, removeALl, LoginUser, DataByToken }}
+    <UserContext.Provider
+      value={{ listUser, addUser, LoginUser, DataByToken, removeAll }}
     >
       {children}
-    </userContext.Provider>
+    </UserContext.Provider>
   );
 };
