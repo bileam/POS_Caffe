@@ -14,6 +14,7 @@ import Login from "./pages/Login";
 import Protected from "./routes/ProtedRoutes";
 import RiwayatTransaksi from "./pages/RiwayatTransaksi";
 import Register from "./pages/Registes";
+import GuestProtected from "./routes/GuestProtected";
 
 const App = () => {
   const [count, setCount] = useState(0);
@@ -24,8 +25,22 @@ const App = () => {
     // </Protected>
     <Router>
       <Routes>
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/register"
+          element={
+            <GuestProtected>
+              <Register />
+            </GuestProtected>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <GuestProtected>
+              <Login />
+            </GuestProtected>
+          }
+        />
         <Route
           path="/"
           element={
