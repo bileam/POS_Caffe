@@ -48,19 +48,24 @@ const Register = () => {
   };
 
   return (
-    <div className="center">
-      <div className="coloms p-5 bg-[#d4e7dc] shadow-white shadow w-100 gap-4 rounded-md">
+    <div className="center h-screen bg-[#357c4d] flex items-center justify-center">
+      <div className="coloms p-5 bg-[#d4e7dc] shadow-white shadow w-100 gap-4 flex flex-col rounded-md ">
         <h1 className="text-center text-[1.2rem] text-[#357c4d] font-bold">
           Login
         </h1>
-        <p className="text-[0.8rem] text-center">
+        {/* <p className="text-[0.8rem] text-center">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam,
           libero?
-        </p>
-        <form onSubmit={handlesubmit} action="" className="coloms gap-5">
+        </p> */}
+        <form
+          onSubmit={handlesubmit}
+          action=""
+          className="coloms flex flex-col gap-5"
+        >
           <Input
             value={form.fullname}
             name="fullname"
+            className="bg-white border-white"
             onChange={handleChange}
             type="text"
             id="fullname"
@@ -70,6 +75,7 @@ const Register = () => {
           <Input
             value={form.username}
             name="username"
+            className="bg-white border-white"
             onChange={handleChange}
             type="text"
             id="username"
@@ -79,6 +85,7 @@ const Register = () => {
           <Input
             value={form.password}
             name="password"
+            className="bg-white border-white"
             onChange={handleChange}
             type="password"
             id="password"
@@ -86,11 +93,24 @@ const Register = () => {
             Password
           </Input>
 
-          <div className="w-full row justify-end gap-2">
-            <Button type="button" onClick={() => navigasi("/login")}>
+          <div className="w-full flex flex-col justify-center items-center gap-1">
+            {/* <Button type="button" onClick={() => navigasi("/login")}>
               Kembali
-            </Button>
-            <Button type="submit">Register</Button>
+            </Button> */}
+            {/* <Button type="submit">Register</Button> */}
+            <button
+              type="submit"
+              className="py-2 px-8 text-[0.8rem] w-[80%] bg-green-800 hover:bg-green-900 transition duration-500 active:scale-95 rounded-lg text-white"
+            >
+              Register
+            </button>
+            <h1 className="text-[0.8rem]">
+              sudah punya akun?{" "}
+              <button type="button" className="text-green-900 cursor-pointer">
+                {" "}
+                Sign IN
+              </button>
+            </h1>
           </div>
         </form>
       </div>

@@ -5,7 +5,7 @@ const ModalUpdate = ({ isOpen, onClose, children, onSubmit, title }) => {
     <div
       onClick={onClose}
       className="fixed inset-0 z-50 flex items-center justify-center
-        bg-black/40 backdrop-blur-sm px-4"
+        bg-black/90 backdrop-blur-sm px-4"
     >
       <div
         onClick={(e) => e.stopPropagation()}

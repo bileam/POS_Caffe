@@ -49,7 +49,7 @@ const MenuCard2 = ({ datas }) => {
     console.log(res);
     setOpen(false);
   };
-  console.log(datas);
+  // console.log(datas);
 
   const DataInput = [
     {
