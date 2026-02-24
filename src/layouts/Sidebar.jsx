@@ -10,14 +10,18 @@ import riwayat from "../assets/Icons/riwayatOrder.svg";
 import Burger from "../assets/Icons/Burger.svg";
 
 import { LoginContext } from "../Context/AuthContext";
+import Lokout from "../components/LogOut";
 const Sidebar = () => {
   const [burger, setBurger] = useState(true);
   const { logout } = useContext(LoginContext);
+  const [isOpen, setOpen] = useState(false);
   const navigasi = useNavigate();
   const handelLogout = (e) => {
     e.preventDefault();
-    logout();
-    navigasi("/login");
+    setOpen(true);
+
+    // logout();
+    // navigasi("/login");
   };
   return (
     <aside
@@ -230,6 +234,11 @@ const Sidebar = () => {
           </span>
         </div>
       </button>
+      <Lokout
+        isOpen={isOpen}
+        Onclose={() => setOpen(false)}
+        logout={() => logout()}
+      />
     </aside>
   );
 };

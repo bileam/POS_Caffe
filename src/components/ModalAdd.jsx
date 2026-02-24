@@ -3,7 +3,7 @@ const ModalAdd = ({ isOpen, OnClose, children, title, onSubmit }) => {
   return (
     <div
       onClick={OnClose}
-      className="fixed inset-0 flex z-50 items-center justify-center bg-black/20"
+      className="fixed inset-0 flex z-50 items-center justify-center bg-black/90 "
     >
       <div
         onClick={(e) => e.stopPropagation()}
