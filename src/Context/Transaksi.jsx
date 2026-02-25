@@ -157,6 +157,33 @@ export const TransaksiProvider = ({ children }) => {
     let profit = 0;
   };
 
+  // data chart omzet harian (bulan berjalan)
+  const getDailyOmzetThisMonth = () => {
+    const now = new Date();
+    const month = now.getMonth();
+    const year = now.getFullYear();
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+    const labels = [];
+    const data = [];
+
+    for (let day = 1; day <= daysInMonth; day++) {
+      const date = new Date(year, month, day);
+      const tanggal = date.toLocaleDateString("id-ID");
+
+      const total = ListTransaksi.filter(
+        (trx) => trx.tanggal === tanggal
+      ).reduce((sum, trx) => sum + trx.total, 0);
+
+      labels.push(
+        `${day} ${date.toLocaleDateString("id-ID", { month: "short" })}`
+      );
+      data.push(total);
+    }
+
+    return { labels, data };
+  };
+
   return (
     <TransaksiContext.Provider
       value={{
@@ -167,6 +194,7 @@ export const TransaksiProvider = ({ children }) => {
         getTotalOmzetToday,
         getWeeklyOmzet,
         transaksiById,
+        getDailyOmzetThisMonth,
       }}
     >
       {children}

@@ -36,18 +36,14 @@ export const ProductProvider = ({ children }) => {
   // update product
   const UpdateProduct = (id, product) => {
     const byId = listProduct.find((item) => item.id === id);
-
     if (!byId) {
       return { message: "tidak ada data", status: 400 };
     }
-
     setListProduct((prev) =>
       prev.map((item) => {
         if (item.id !== id) return item;
-
         const newStock =
           product.stock !== undefined ? Math.max(0, product.stock) : item.stock;
-
         return {
           ...item,
           ...product,
@@ -55,7 +51,6 @@ export const ProductProvider = ({ children }) => {
         };
       })
     );
-
     return { message: "berhasil update", status: 200 };
   };
 
