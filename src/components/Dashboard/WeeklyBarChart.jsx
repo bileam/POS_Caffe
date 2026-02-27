@@ -20,7 +20,7 @@ const WeeklyBarChart = ({ data }) => {
           <XAxis dataKey="label" />
           <YAxis />
           <Tooltip formatter={(value) => `Rp ${value.toLocaleString()}`} />
-          <Bar dataKey="total" fill="#357c4d" radius={[6, 6, 0, 0]} />
+          <Bar dataKey="total" fill="#00982a" radius={[6, 6, 0, 0]} />
         </BarChart>
       </ResponsiveContainer>
     </div>
