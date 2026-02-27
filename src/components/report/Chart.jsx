@@ -22,7 +22,7 @@ const Chart = () => {
           series={[
             {
               data,
-              color: "#16a34a",
+              color: "#00982a",
               area: true,
             },
           ]}
