@@ -17,12 +17,12 @@ const ModalUpdate = ({ isOpen, onClose, children, onSubmit, title }) => {
       >
         {/* HEADER */}
         <div className="flex items-center justify-between px-5 py-4 border-b">
-          <h2 className="text-lg font-semibold text-[#357c4d]">{title}</h2>
+          <h2 className="text-lg font-semibold text-[#00982a]">{title}</h2>
           <button
             onClick={onClose}
             type="button"
             className="w-9 h-9 rounded-full flex items-center justify-center
-              hover:bg-red-100 text-red-500 transition active:scale-90"
+             bg-[#00982a] text-white transition active:scale-90"
           >
             ✕
           </button>
@@ -45,11 +45,11 @@ const ModalUpdate = ({ isOpen, onClose, children, onSubmit, title }) => {
             >
               Batal
             </button>
+
             <button
               type="submit"
-              className="px-4 py-2 rounded-md
-                bg-[#357c4d] text-white
-                hover:bg-[#2c6a41] transition"
+              // onClick={() => Update(item.id)}
+              className="px-4 py-1 cursor-pointer  border rounded-md bg-[#00982a] hover:bg-[#007f24]  transition-all duration-500 text-[#FFFFFF] border-[#d4e7dc]"
             >
               Simpan
             </button>

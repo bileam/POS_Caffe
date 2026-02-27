@@ -124,7 +124,13 @@ const Product = () => {
           </Input>
         </div>
 
-        <Button onClick={() => setIsOpen(true)}>Add Product</Button>
+        <button
+          onClick={() => setIsOpen(true)}
+          className="py-2 px-4 bg-[#00982a] hover:bg-[#007f24] transition-all duration-500 active:scale-95  ease-in shadow-sm cursor-pointer rounded-md text-white text-[0.8rem]"
+        >
+          Add Product
+        </button>
+        {/* <Button onClick={() => setIsOpen(true)}>Add Product</Button> */}
       </div>
 
       {loading ? (
@@ -221,8 +227,8 @@ const Product = () => {
           <button
             type="submit"
             className="px-4 py-2 rounded-md
-                bg-[#357c4d] text-white
-                hover:bg-[#2c6a41] transition"
+                bg-[#00982a] hover:bg-[#007f24] text-white
+                 transition"
           >
             Simpan
           </button>

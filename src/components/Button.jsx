@@ -1,11 +1,27 @@
-const Button = ({ type, onClick, children, className = "", active }) => {
+const Button = ({
+  type = "button",
+  onClick,
+  children,
+  className = "",
+  active,
+}) => {
   return (
     <button
       type={type}
       onClick={onClick}
-      className={`py-2 px-4 text-[0.9rem] ${
-        active ? " bg-[#36794d] text-white" : ""
-      }   cursor-pointer bg-[#d4e7dc] border border-[#357c4d]    text-[#357c4d]  hover:bg-[#36794d] hover:text-white transition-all duration-700  rounded-md `}
+      className={`
+        py-2 px-4 text-[0.8rem] rounded-md cursor-pointer
+        border border-[#357c4d]
+        transition-all duration-300
+
+        ${
+          active
+            ? "bg-[#00982a] text-white hover:bg-[#007f24]"
+            : "bg-[#d4e7dc] text-[#357c4d] hover:bg-[#36794d] hover:text-white"
+        }
+
+        ${className}
+      `}
     >
       {children}
     </button>
