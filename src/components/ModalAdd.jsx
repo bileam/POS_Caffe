@@ -15,7 +15,7 @@ const ModalAdd = ({ isOpen, OnClose, children, title, onSubmit }) => {
             onClick={OnClose}
             type="button"
             className="w-9 h-9 rounded-full flex items-center justify-center
-              hover:bg-red-100 text-red-500 transition active:scale-90"
+               bg-[#00982a] text-white  transition active:scale-90"
           >
             ✕
           </button>

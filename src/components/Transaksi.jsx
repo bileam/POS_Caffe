@@ -4,9 +4,11 @@ import { useContext, useState } from "react";
 import Modal from "./Modal";
 import Input from "./Input";
 import { TransaksiContext } from "../Context/Transaksi";
+import Modall from "./modal/Modall";
 
 const Transaksi = () => {
   const { Listdata, deleteAll, deleallSuccessOrder } = useContext(CartContext);
+  const [modalOpen, setModal] = useState(false);
   const { addTransaksi } = useContext(TransaksiContext);
   const [openModal, setOpenModal] = useState(false);
   const [namaPemesan, setNamaPemesan] = useState("");
@@ -19,17 +21,19 @@ const Transaksi = () => {
   const handlePesan = (e) => {
     e.preventDefault();
     if (!namaPemesan) return alert("Masukkan nama pemesan");
-
     addTransaksi({ namaPemesan, items: Listdata });
     deleallSuccessOrder();
-    setOpenModal(true);
+    // setOpenModal(true);
+    setModal(true);
   };
+
+  // console.log(Listdata);
 
   return (
     <div className="w-full h-full min-h-0 bg-white rounded-xl  shadow-lg flex flex-col">
       {/* HEADER */}
       <div className="p-4 border-b sticky top-0 bg-white z-10 rounded-xl">
-        <h1 className="text-lg font-bold text-[#357c4d]">🧾 Current Order</h1>
+        <h1 className="text-lg font-bold text-[#00982a]">🧾 Current Order</h1>
       </div>
 
       {/* NAMA PEMESAN */}
@@ -68,9 +72,16 @@ const Transaksi = () => {
 
         {/* ACTION */}
         <div className="flex gap-2 mt-3">
+          {/* warna riset ulang
+         BG        : #e5efe9
+         Text      : #357c4d
+         Border    : #357c4d
+         Hover BG  : #36794d
+         Hover Text: #ffffff
+         */}
           <button
             onClick={deleteAll}
-            className="w-1/3 py-2 rounded-md bg-red-100 text-red-600 hover:bg-red-200 transition"
+            className="w-1/3 py-2 rounded-md bg-[#e5efe9] hover:text-[#ffffff] duration-500 ease-in-out text-[#357c4d] hover:bg-[#36794d] transition"
           >
             Reset
           </button>
@@ -84,8 +95,12 @@ const Transaksi = () => {
           </button>
         </div>
       </div>
-
-      <Modal isOpen={openModal} isClose={() => setOpenModal(false)} />
+      <Modal isOpen={modalOpen} isClose={() => setModal(false)} />
+      <Modall
+        title="PAYMENT"
+        isOpen={openModal}
+        onClose={() => setOpenModal(false)}
+      />
     </div>
   );
 };

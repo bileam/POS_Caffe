@@ -27,14 +27,14 @@ const Sidebar = () => {
     <aside
       className={` ${
         burger ? "w-20 " : "w-50"
-      } flex flex-col p-5  transition-all duration-500 h-full ease-in-out bg-white z-10 justify-between`}
+      } flex flex-col p-5  transition-all duration-500 h-full ease-in-out bg-white  z-10 justify-between`}
     >
       <div className="w-full  flex-col flex gap-4 mt-9">
         <div className="flex justify-between items-center">
           <img src="" alt="" />
           <button
             onClick={() => setBurger((prev) => !prev)}
-            className={`bg-[#357c4d] rounded-full ${
+            className={`bg-[#00982a] hover:bg-[#007f24] rounded-full ${
               burger ? "rotate-0 delay-500" : "rotate-180 delay-500"
             } translate-x-9 p-2 text-white shadow transition-all duration-700 ease-in-out cursor-pointer focus:scale-95 active:scale-90  flex flex-col gap-2`}
           >

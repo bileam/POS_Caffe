@@ -14,6 +14,7 @@ const Chasir = () => {
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState("");
   const { listProduct } = useContext(ProductContext);
+  const [categoryActive, setCategoryActive] = useState("ALL");
   // const getAll = () => {
 
   // };
@@ -36,9 +37,24 @@ const Chasir = () => {
       {/* MENU */}
       <div className="flex-1 flex flex-col gap-2 overflow-hidden">
         <div className=" rounded-lg p-2 flex gap-2 items-center">
-          <Button active>Semua kategori</Button>
-          <Button>Makanan</Button>
-          <Button>Minuman</Button>
+          <Button
+            active={categoryActive === "ALL"}
+            onClick={() => setCategoryActive("ALL")}
+          >
+            Semua kategori
+          </Button>
+          <Button
+            active={categoryActive === "Makanan"}
+            onClick={() => setCategoryActive("Makanan")}
+          >
+            Makanan
+          </Button>
+          <Button
+            active={categoryActive === "Minuman"}
+            onClick={() => setCategoryActive("Minuman")}
+          >
+            Minuman
+          </Button>
           <Input className="flex-1" type="search">
             Cari Menu
           </Input>

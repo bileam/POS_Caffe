@@ -118,11 +118,11 @@ const MenuCard2 = ({ datas }) => {
           <div className="flex justify-between items-center">
             <span className="text-xs">{datas.stock} / stock</span>
             <div className="flex gap-3">
-              <button onClick={() => handleOpenModal(datas)}>
-                <img src={update} alt="" />
-              </button>
               <button onClick={() => deleteByOne(datas.id)}>
                 <img src={hapus} alt="" />
+              </button>
+              <button onClick={() => handleOpenModal(datas)}>
+                <img src={update} alt="" />
               </button>
             </div>
           </div>

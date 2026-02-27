@@ -76,9 +76,16 @@ const Category = () => {
               Searching
             </Input>
           </div>
-          <Button type="button" onClick={() => setOpen(true)}>
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            className="py-2 px-4 bg-[#00982a] hover:bg-[#007f24] transition-all duration-500 active:scale-95  ease-in shadow-sm cursor-pointer rounded-md text-white text-[0.8rem]"
+          >
+            Add Product
+          </button>
+          {/* <Button type="button" onClick={() => setOpen(true)}>
             Add Kategori
-          </Button>
+          </Button> */}
         </div>
         <table className=" w-full">
           <thead>
@@ -101,13 +108,13 @@ const Category = () => {
                 <td className="flex gap-4 items-center justify-center p-2 ">
                   <button
                     onClick={() => DeleteCategoryById(item.id)}
-                    className="px-4 py-1 cursor-pointer border rounded-md border-[#357c4d] text-[#357c4d] bg-[#d4e7dc]"
+                    className="px-4 py-1 cursor-pointer shadow shadow-[#00982a] rounded-md  text-[#357c4d] bg-white transition-all duration-500  hover:bg-[#d4e7dc]"
                   >
                     Delete
                   </button>
                   <button
                     onClick={() => Update(item.id)}
-                    className="px-4 py-1 cursor-pointer border rounded-md bg-[#357c4d] hover:bg-green-800  transition-all duration-500 text-[#FFFFFF] border-[#d4e7dc]"
+                    className="px-4 py-1 cursor-pointer shadow shadow-[#00982a] border rounded-md bg-[#00982a] hover:bg-[#007f24]  transition-all duration-500 text-[#FFFFFF] border-[#d4e7dc]"
                   >
                     Update
                   </button>
