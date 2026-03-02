@@ -184,6 +184,57 @@ export const TransaksiProvider = ({ children }) => {
     return { labels, data };
   };
 
+  // report
+  const isWithinLast7Days = (trxDate) => {
+    const today = new Date();
+    const trx = new Date(trxDate.split("/").reverse().join("-"));
+    const diffTime = today - trx;
+    const diffDays = diffTime / (1000 * 60 * 60 * 24);
+    return diffDays >= 0 && diffDays <= 6;
+  };
+  // paling sering dibeli munggu ini
+  const getMostBoughtItemsThisWeek = () => {
+    const itemMap = {};
+
+    ListTransaksi.filter((trx) => isWithinLast7Days(trx.tanggal)).forEach(
+      (trx) => {
+        trx.items.forEach((item) => {
+          if (!itemMap[item.name]) {
+            itemMap[item.name] = {
+              name: item.name,
+              image: item.image,
+              qty: 0,
+            };
+          }
+          itemMap[item.name].qty += item.qty;
+        });
+      }
+    );
+
+    return Object.values(itemMap).sort((a, b) => b.qty - a.qty);
+  };
+
+  // paling jarng dibeli minggu ini
+  const getLeastBoughtItemsThisWeek = () => {
+    const itemMap = {};
+
+    ListTransaksi.filter((trx) => isWithinLast7Days(trx.tanggal)).forEach(
+      (trx) => {
+        trx.items.forEach((item) => {
+          if (!itemMap[item.name]) {
+            itemMap[item.name] = {
+              name: item.name,
+              image: item.image,
+              qty: 0,
+            };
+          }
+          itemMap[item.name].qty += item.qty;
+        });
+      }
+    );
+
+    return Object.values(itemMap).sort((a, b) => a.qty - b.qty);
+  };
   return (
     <TransaksiContext.Provider
       value={{
@@ -195,6 +246,8 @@ export const TransaksiProvider = ({ children }) => {
         getWeeklyOmzet,
         transaksiById,
         getDailyOmzetThisMonth,
+        getMostBoughtItemsThisWeek,
+        getLeastBoughtItemsThisWeek,
       }}
     >
       {children}
