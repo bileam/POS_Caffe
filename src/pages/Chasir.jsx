@@ -60,7 +60,7 @@ const Chasir = () => {
           </Input>
         </div>
 
-        <div className="flex-1 flex flex-wrap gap-4 overflow-y-auto no-scrollbar p-2">
+        <div className="flex-1  flex flex-wrap gap-4 overflow-y-auto no-scrollbar p-2">
           {loading
             ? Array.from({ length: 8 }).map((_, i) => <Loading key={i} />)
             : listProduct.map((item, i) => <MenuCard key={i} datas={item} />)}

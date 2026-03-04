@@ -96,7 +96,7 @@ const Register = () => {
             Password
           </Input>
 
-          <div className="w-full flex flex-col justify-center items-center gap-1">
+          <div className="w-full  flex flex-col justify-center items-center gap-1">
             {/* <Button type="button" onClick={() => navigasi("/login")}>
               Kembali
             </Button> */}
