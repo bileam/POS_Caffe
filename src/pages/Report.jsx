@@ -28,7 +28,6 @@ const Report = () => {
   return (
     <div className="flex flex-col h-screen gap-2">
       <Title>Laporan</Title>
-
       {/* HEADER */}
       <div className="flex justify-between text-[0.8rem]">
         <ButtonLaporan className="text-[#00982a]">Filter</ButtonLaporan>
