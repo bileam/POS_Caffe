@@ -24,8 +24,6 @@ export const LoginProvider = ({ children }) => {
     setToken(null);
   };
 
-  
-
   return (
     <LoginContext.Provider value={{ token, login, logout, loading }}>
       {children}
