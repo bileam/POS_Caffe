@@ -27,7 +27,14 @@ export const TransaksiProvider = ({ children }) => {
     return {
       message: "Transaksi berhasil",
       status: 200,
+      _id: transaksiBaru.id,
     };
+  };
+
+  // mencari transaksi berdasarkan id
+  const ByIdTransaksi = (transaksiid) => {
+    const transaksi = ListTransaksi.find((item) => item.id === transaksiid);
+    return transaksi;
   };
 
   // menghitung yang paling banyak dibeli hari ini
@@ -244,6 +251,7 @@ export const TransaksiProvider = ({ children }) => {
         getTotalItemsSoldToday,
         getTotalOmzetToday,
         getWeeklyOmzet,
+        ByIdTransaksi,
         transaksiById,
         getDailyOmzetThisMonth,
         getMostBoughtItemsThisWeek,

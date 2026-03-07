@@ -20,14 +20,14 @@ const Modall = ({ isOpen, title, onClose, children }) => {
             onClick={onClose}
             type="button"
             className="w-9 h-9 rounded-full flex items-center justify-center
-              hover:bg-red-100 text-red-500 transition active:scale-90"
+              hover:bg-[#357c4d] hover:text-white shadow-2xl  text-black  transition-all duration-500 active:scale-90"
           >
             ✕
           </button>
         </div>
 
         {/* body /content */}
-        <div>{children}</div>
+        <div className="flex flex-col px-5 py-4 gap-2">{children}</div>
       </div>
     </div>
   );
