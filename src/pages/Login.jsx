@@ -31,6 +31,11 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(form.username)) {
+      alert("email harus mengandung @ dan .");
+      return;
+    }
     try {
       const result = LoginUser(form);
       if (!result?.status) {

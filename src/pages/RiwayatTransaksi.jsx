@@ -2,32 +2,56 @@ import { Link } from "react-router-dom";
 import Title from "../components/Title";
 
 import { TransaksiContext } from "../Context/Transaksi";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import Input from "../components/Input";
 const RiwayatTransaksi = () => {
   const { ListTransaksi } = useContext(TransaksiContext);
+  const [search, setsearch] = useState("");
+  const [date, setDate] = useState("");
   // namaPemesan
   // tanggal
   // items
   // total
   // jam
   // console.log(ListTransaksi);
+  const result = ListTransaksi.filter((item) => {
+    const searchin = item.namaPemesan
+      .toLowerCase()
+      .includes(search.toLowerCase());
+
+    const matchDate = date
+      ? item.tanggal === new Date(date).toLocaleDateString("id-ID")
+      : true;
+    return searchin && matchDate;
+  });
   return (
     <div className="h-screen flex flex-col overflow-hidden gap-2 pb-15">
       <Title>Riwayat transaksi</Title>
       <div className="  w-[40%] flex gap-2">
-        <Input>Cari Transaksi</Input>
-        <input type="date" className="border rounded px-2 border-[#357c4d]" />
+        <Input
+          name="search"
+          value={search}
+          onChange={(e) => setsearch(e.target.value)}
+        >
+          Cari Transaksi
+        </Input>
+        <input
+          type="date"
+          name="date"
+          value={date}
+          onChange={(e) => setDate(e.target.value)}
+          className="border rounded px-2 border-[#357c4d]"
+        />
       </div>
       <div className="flex-1 bg-white  p-3 flex  gap-2 overflow-hidden rounded-md">
         <div className="overflow-y-auto flex-1 space-y-2 relative">
-          {ListTransaksi.length === 0 && (
-            <div className="text-[#d4e7dc] text-center">
+          {result.length === 0 && (
+            <div className="text-[#000000] text-center  h-full flex items-center justify-center">
               Belum ada transaksi
             </div>
           )}
 
-          {[...ListTransaksi]
+          {[...result]
             .sort((a, b) => b.id - a.id)
             .map((item) => (
               <button className="flex flex-col border border-[#357c4d]  shadow-md hover:shadow-[] p-2 rounded-md text-start w-full cursor-pointer active:scale-95 transition-all duration-500 ease-in-out">

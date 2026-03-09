@@ -14,10 +14,12 @@ const Product = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [message, setMessage] = useState("");
   const [toastOpen, setToastOpen] = useState(false);
+  // console.log(listProduct());
 
   // 🔥 DIPISAH
   const [searchText, setSearchText] = useState("");
   const [filterCategory, setFilterCategory] = useState("");
+  const categories = [...new Set(listProduct.map((item) => item.category))];
 
   const [form, setForm] = useState({
     name: "",
@@ -105,9 +107,9 @@ const Product = () => {
             className="outline-none border rounded-md px-2"
           >
             <option value="">Semua Produk</option>
-            {categori.map((item, index) => (
-              <option key={index} value={item.name}>
-                {item.name}
+            {categories.map((item, index) => (
+              <option key={index} value={item}>
+                {item}
               </option>
             ))}
             {/* 
