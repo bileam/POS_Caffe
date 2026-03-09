@@ -30,6 +30,12 @@ const Register = () => {
     e.preventDefault();
     // console.log(form);
 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(form.username)) {
+      alert("username harus menggunakan @ dan .");
+      return;
+    }
+
     if (!form.fullname || !form.username || !form.password) {
       setOpen(true);
       setTimeout(() => {
@@ -41,7 +47,7 @@ const Register = () => {
     login(res.token);
     // console.log(res);
     if (res) {
-      return navigasi("/dashboard");
+      return navigasi("/login");
     }
     // setOpen(true);
     // setMessage(res.message);
