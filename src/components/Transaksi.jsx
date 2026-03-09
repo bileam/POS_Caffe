@@ -19,7 +19,7 @@ const Transaksi = () => {
     0
   );
 
-  console.log(ListTransaksi);
+  // console.log(ListTransaksi);
   const TransaksiById = ByIdTransaksi(byID);
   const handlePesan = (e) => {
     e.preventDefault();

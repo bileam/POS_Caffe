@@ -5,7 +5,7 @@ import { useContext } from "react";
 const Chart = () => {
   const { getDailyOmzetThisMonth } = useContext(TransaksiContext);
   const { labels, data } = getDailyOmzetThisMonth();
-  console.log(getDailyOmzetThisMonth);
+  // console.log(getDailyOmzetThisMonth);
   return (
     <div className="flex flex-col mt-2 ">
       <div>

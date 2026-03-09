@@ -16,6 +16,7 @@ const Dashboard = () => {
   const {
     ListTransaksi,
     addTransaksi,
+    getTransactionToday,
     getSortedItemsToday,
     getTotalItemsSoldToday,
     getTotalOmzetToday,
@@ -35,7 +36,7 @@ const Dashboard = () => {
     <div className="flex flex-col h-screen overflow-y-scroll gap-2  no-scrollbar">
       <Title>dashboard</Title>
       <div className="flex flex-wrap gap-4">
-        <CardDashboard logo={logo1} data={ListTransaksi.length || 0}>
+        <CardDashboard logo={logo1} data={getTransactionToday() || 0}>
           Transaksi Hari ini
         </CardDashboard>
         <CardDashboard

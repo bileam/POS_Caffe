@@ -37,6 +37,12 @@ export const TransaksiProvider = ({ children }) => {
     return transaksi;
   };
 
+  // menghitung jumlah transaksi hari ini
+  const getTransactionToday = () => {
+    const today = new Date().toLocaleDateString("id-ID");
+    return ListTransaksi.filter((item) => item.tanggal === today).length;
+  };
+
   // menghitung yang paling banyak dibeli hari ini
   const getSortedItemsToday = () => {
     const today = new Date().toLocaleDateString("id-ID");
@@ -159,10 +165,10 @@ export const TransaksiProvider = ({ children }) => {
   };
 
   // keuntungan hari ini
-  const getProfitToday = () => {
-    const tanggalHariINi = new Date().toISOString().slice(0, 10);
-    let profit = 0;
-  };
+  // const getProfitToday = () => {
+  //   const tanggalHariINi = new Date().toISOString().slice(0, 10);
+  //   let profit = 0;
+  // };
 
   // data chart omzet harian (bulan berjalan)
   const getDailyOmzetThisMonth = () => {
@@ -170,7 +176,6 @@ export const TransaksiProvider = ({ children }) => {
     const month = now.getMonth();
     const year = now.getFullYear();
     const daysInMonth = new Date(year, month + 1, 0).getDate();
-
     const labels = [];
     const data = [];
 
@@ -256,6 +261,7 @@ export const TransaksiProvider = ({ children }) => {
         getDailyOmzetThisMonth,
         getMostBoughtItemsThisWeek,
         getLeastBoughtItemsThisWeek,
+        getTransactionToday,
       }}
     >
       {children}

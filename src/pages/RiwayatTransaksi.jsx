@@ -11,7 +11,7 @@ const RiwayatTransaksi = () => {
   // items
   // total
   // jam
-  console.log(ListTransaksi);
+  // console.log(ListTransaksi);
   return (
     <div className="h-screen flex flex-col overflow-hidden gap-2 pb-15">
       <Title>Riwayat transaksi</Title>
