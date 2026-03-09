@@ -4,6 +4,7 @@ import Title from "../components/Title";
 import { TransaksiContext } from "../Context/Transaksi";
 import { useContext, useState } from "react";
 import Input from "../components/Input";
+import Emptyy from "../components/Emptyy";
 const RiwayatTransaksi = () => {
   const { ListTransaksi } = useContext(TransaksiContext);
   const [search, setsearch] = useState("");
@@ -45,11 +46,7 @@ const RiwayatTransaksi = () => {
       </div>
       <div className="flex-1 bg-white  p-3 flex  gap-2 overflow-hidden rounded-md">
         <div className="overflow-y-auto flex-1 space-y-2 relative">
-          {result.length === 0 && (
-            <div className="text-[#000000] text-center  h-full flex items-center justify-center">
-              Belum ada transaksi
-            </div>
-          )}
+          {result.length === 0 && <Emptyy />}
 
           {[...result]
             .sort((a, b) => b.id - a.id)

@@ -7,6 +7,7 @@ import Loading from "../components/Loading";
 import Title from "../components/Title";
 import ModalAdd from "../components/ModalAdd";
 import { CategoryContext } from "../Context/Categori";
+import Emptyy from "../components/Emptyy";
 const Product = () => {
   const { listProduct, addProduct } = useContext(ProductContext);
   const { categori } = useContext(CategoryContext);
@@ -144,7 +145,9 @@ const Product = () => {
       ) : (
         <div className="flex flex-wrap gap-4 overflow-y-auto no-scrollbar pb-20">
           {filteredProduct.length === 0 ? (
-            <div className="text-[#cdcdcd] mx-auto">tidak ada data</div>
+            <div className=" h-100  w-full ">
+              <Emptyy />
+            </div>
           ) : (
             filteredProduct.map((item) => (
               <MenuCard2 datas={item} key={item.id} />

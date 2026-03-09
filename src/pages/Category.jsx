@@ -5,6 +5,7 @@ import Title from "../components/Title";
 import Input from "../components/Input";
 import ModalAdd from "../components/ModalAdd";
 import ModalUpdate from "../components/ModalUpdate";
+import Emptyy from "../components/Emptyy";
 const Category = () => {
   const [search, setsearch] = useState("");
   const [isOpen, setOpen] = useState(false);
@@ -97,8 +98,8 @@ const Category = () => {
           </thead>
           <tbody className="text-center w-full relative">
             {filterSearch.length === 0 && (
-              <div className="text-[#cdcdcd]  absolute left-1/2 translate-x-[50%] top-50">
-                tidak ada data
+              <div className="text-[#cdcdcd]  absolute left-100  top-25">
+                <Emptyy />
               </div>
             )}
             {filterSearch.map((item, index) => (
