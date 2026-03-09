@@ -73,7 +73,8 @@ const Login = () => {
         <div className="flex justify-center text-[0.9rem] flex-col gap-2 items-center ">
           {/* <img src={person} alt="" className="w-20 object-cover rounded-full" /> */}
           <h1 className="flex-wrap text-[0.8rem] text-center">
-            hallo Admin lor Lorem ipsum dolor sit amet. Lorem ipsum dolor sit.
+            Hallo Admin 👋 Selamat datang di dashboard, kelola sistem Anda
+            dengan lebih efisien.
           </h1>
         </div>
         <form onSubmit={handleSubmit} action="" className="  ">
