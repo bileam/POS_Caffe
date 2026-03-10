@@ -115,3 +115,85 @@ export const askAI = (question, ctx) => {
 
   return "Maaf saya belum mengerti pertanyaan itu.";
 };
+
+// // utils/aiAssistant.js
+// export const askAI = async (question, ctx) => {
+//   try {
+//     const omzetToday = ctx.getTotalOmzetToday();
+//     const omzetWeek = ctx.getTotalOmzetWeek();
+//     const omzetMonth = ctx.getTotalOmzetMonth();
+//     const omzetYear = ctx.getTotalOmzetYear();
+
+//     const transaksiToday = ctx.getTransactionToday();
+
+//     const produkTerlarisToday = ctx.getSortedItemsToday()[0];
+//     const produkTerlarisWeek = ctx.getMostBoughtItemsThisWeek()[0];
+
+//     const produkJarang = ctx.getLeastBoughtItemsThisWeek().slice(0, 5);
+
+//     const systemPrompt = `
+//   Kamu adalah AI kasir untuk aplikasi POS Cafe.
+
+//   Data penjualan:
+
+//   Omzet Hari Ini: Rp ${omzetToday.toLocaleString("id-ID")}
+//   Omzet Minggu Ini: Rp ${omzetWeek.toLocaleString("id-ID")}
+//   Omzet Bulan Ini: Rp ${omzetMonth.toLocaleString("id-ID")}
+//   Omzet Tahun Ini: Rp ${omzetYear.toLocaleString("id-ID")}
+
+//   Jumlah Transaksi Hari Ini: ${transaksiToday}
+
+//   Produk Terlaris Hari Ini:
+//   ${
+//     produkTerlarisToday
+//       ? produkTerlarisToday.name + " (" + produkTerlarisToday.qty + " terjual)"
+//       : "Belum ada transaksi"
+//   }
+
+//   Produk Terlaris Minggu Ini:
+//   ${
+//     produkTerlarisWeek
+//       ? produkTerlarisWeek.name + " (" + produkTerlarisWeek.qty + " terjual)"
+//       : "Belum ada transaksi"
+//   }
+
+//   Produk Jarang Dibeli:
+//   ${produkJarang.map((i) => `${i.name} (${i.qty})`).join(", ")}
+
+//   Jawab pertanyaan user dengan singkat dalam bahasa Indonesia.
+//   `;
+
+//     const response = await fetch("https://api.openai.com/v1/chat/completions", {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//         Authorization: `Bearer ${import.meta.env.VITE_OPENAI_KEY}`,
+//       },
+//       body: JSON.stringify({
+//         model: "gpt-4o-mini",
+//         messages: [
+//           {
+//             role: "system",
+//             content: systemPrompt,
+//           },
+//           {
+//             role: "user",
+//             content: question,
+//           },
+//         ],
+//       }),
+//     });
+
+//     const data = await response.json();
+
+//     if (!data.choices) {
+//       console.log(data);
+//       return "billing not active";
+//     }
+
+//     return data.choices[0].message.content;
+//   } catch (error) {
+//     console.error(error);
+//     return "Terjadi kesalahan pada AI.";
+//   }
+// };

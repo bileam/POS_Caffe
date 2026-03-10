@@ -2,7 +2,7 @@ import { useState, useContext, useRef, useEffect } from "react";
 import { TransaksiContext } from "../Context/Transaksi";
 import { askAI } from "../utils/aiAssistant";
 
-const AIChat = () => {
+const AIChat = ({ className = " " }) => {
   const ctx = useContext(TransaksiContext);
 
   const [question, setQuestion] = useState("");
@@ -10,12 +10,12 @@ const AIChat = () => {
 
   const chatEndRef = useRef(null);
 
-  const handleAsk = (e) => {
+  const handleAsk = async (e) => {
     e.preventDefault();
 
     if (!question.trim()) return;
 
-    const answer = askAI(question, ctx);
+    const answer = await askAI(question, ctx);
 
     setMessages((prev) => [
       ...prev,
@@ -34,7 +34,8 @@ const AIChat = () => {
   return (
     <div
       onClick={(e) => e.stopPropagation()}
-      className="bg-white shadow-xl max-w-[70%] rounded-xl p-4 w-full h-110 flex flex-col"
+      //   max-w-[70%] w-full h-110
+      className={`bg-white  shadow-xl  rounded-xl ${className}   flex flex-col`}
     >
       <h2 className="font-bold mb-3 text-green-600">AI Kasir</h2>
       <span className="w-full border mt-2 inline-block"></span>
