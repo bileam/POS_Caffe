@@ -34,17 +34,17 @@ const MainLayout = () => {
       <div className="fixed bottom-5 right-10 flex flex-col items-end gap-2 group">
         {/* Chat Box */}
 
-        <AIChat className="overflow-hidden  w-0 h-0 group-hover:w-[320px] group-hover:h-80 group-hover:p-4 transition-all duration-500" />
+        <AIChat className="overflow-hidden   w-0 h-0 group-hover:w-[320px] group-hover:h-80 group-hover:p-4 transition-all duration-500" />
 
         {/* Button */}
         <button
           onClick={() => setOpen(true)}
-          className="bg-green-600 p-3 rounded-full shadow-lg hover:bg-green-700 transition"
+          className="bg-green-600 p-2 rounded-full float-small  shadow-lg hover:bg-green-700 transition"
         >
           <img
             src={bot}
             alt="AI Bot"
-            className="w-8 object-cover group-hover:scale-110 transition-transform duration-300"
+            className="w-8 object-cover group-hover:scale-105 scale-200 transition-transform duration-300"
           />
         </button>
       </div>
