@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useRef, useEffect } from "react";
 import { TransaksiContext } from "../Context/Transaksi";
 import { askAI } from "../utils/aiAssistant";
 
@@ -8,7 +8,11 @@ const AIChat = () => {
   const [question, setQuestion] = useState("");
   const [messages, setMessages] = useState([]);
 
-  const handleAsk = () => {
+  const chatEndRef = useRef(null);
+
+  const handleAsk = (e) => {
+    e.preventDefault();
+
     if (!question.trim()) return;
 
     const answer = askAI(question, ctx);
@@ -22,37 +26,63 @@ const AIChat = () => {
     setQuestion("");
   };
 
+  // auto scroll setiap ada pesan baru
+  useEffect(() => {
+    chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages]);
+
   return (
-    <div className=" bg-white shadow-xl rounded-xl p-2 w-full ">
+    <div
+      onClick={(e) => e.stopPropagation()}
+      className="bg-white shadow-xl max-w-[70%] rounded-xl p-4 w-full h-110 flex flex-col"
+    >
       <h2 className="font-bold mb-3">AI Kasir</h2>
 
-      <div className="h-48 overflow-auto text-sm space-y-2 mb-3">
+      {/* Chat Area */}
+      <div className="flex-1 overflow-auto text-sm space-y-2 mb-3">
         {messages.map((msg, index) => (
           <div key={index}>
             <span
-              className={msg.role === "ai" ? "text-green-600" : "text-black"}
+              className={
+                msg.role === "ai"
+                  ? "text-green-600 font-semibold"
+                  : "text-black font-bold"
+              }
             >
               {msg.role === "user" ? "Anda: " : "AI: "}
             </span>
-            {msg.text}
+
+            <span
+              className={`whitespace-pre-line ${
+                msg.role === "ai" ? "text-gray-700" : "text-black"
+              }`}
+            >
+              {msg.text}
+            </span>
           </div>
         ))}
+
+        {/* anchor untuk scroll */}
+        <div ref={chatEndRef}></div>
       </div>
 
-      <input
-        type="text"
-        value={question}
-        onChange={(e) => setQuestion(e.target.value)}
-        placeholder="Tanya sesuatu..."
-        className="border p-2 w-full rounded"
-      />
+      {/* Form Input */}
+      <form onSubmit={handleAsk} className="flex gap-2 w-full">
+        <input
+          type="text"
+          value={question}
+          onChange={(e) => setQuestion(e.target.value)}
+          placeholder="Tanya sesuatu..."
+          className="border p-2 rounded flex-1"
+        />
 
-      <button
-        onClick={handleAsk}
-        className="bg-green-600 text-white px-3 py-1 mt-2 rounded w-full"
-      >
-        Tanya
-      </button>
+        <button
+          type="submit"
+          className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition"
+        >
+          Tanyakan
+        </button>
+      </form>
     </div>
   );
 };

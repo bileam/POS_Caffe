@@ -13,7 +13,7 @@ import ModalAi from "../components/Ai/ModalAI";
 const MainLayout = () => {
   const { token } = useContext(LoginContext);
   const { DataByToken } = useContext(UserContext);
-  const [isOpen, setOpen] = useState(true);
+  const [isOpen, setOpen] = useState(false);
   // const res = DataByToken(token);
   const user = useMemo(() => {
     return DataByToken(token);
