@@ -3,14 +3,17 @@ import Dashboard from "../pages/Chasir";
 import Sidebar from "./Sidebar";
 import TopBar from "./TopBar";
 import { LoginContext } from "../Context/AuthContext";
+import bot from "../assets/Icons/bot.svg";
 // import { userContext } from "../Context/UserContext";
 import { UserContext } from "../Context/UserContext";
 // import { UserContext } from "../Context/UserContext";
-import { useContext, useMemo } from "react";
+import { useContext, useMemo, useState } from "react";
+import ModalAi from "../components/Ai/ModalAI";
 
 const MainLayout = () => {
   const { token } = useContext(LoginContext);
   const { DataByToken } = useContext(UserContext);
+  const [isOpen, setOpen] = useState(true);
   // const res = DataByToken(token);
   const user = useMemo(() => {
     return DataByToken(token);
@@ -27,6 +30,17 @@ const MainLayout = () => {
           <Outlet />
         </main>
       </div>
+      <button
+        onClick={() => setOpen(true)}
+        className="inline-block fixed bottom-5 float-small group    right-10 p-2 rounded-full bg-green-600"
+      >
+        <img
+          src={bot}
+          alt=""
+          className="w-8 object-cover group-hover:scale-200 transition-all duration-500"
+        />
+      </button>
+      <ModalAi isOpen={isOpen} OnClose={() => setOpen(false)} />
     </div>
   );
 };

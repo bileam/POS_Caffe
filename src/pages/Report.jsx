@@ -22,7 +22,7 @@ const Report = () => {
     getTotalOmzetYear,
   } = useContext(TransaksiContext);
 
-  console.log(getTotalOmzetWeek());
+  // console.log(getTotalOmzetWeek());
   const mostBought = useMemo(
     () => getMostBoughtItemsThisWeek(),
     [ListTransaksi]

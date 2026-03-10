@@ -15,6 +15,7 @@ import Protected from "./routes/ProtedRoutes";
 import RiwayatTransaksi from "./pages/RiwayatTransaksi";
 import Register from "./pages/Registes";
 import GuestProtected from "./routes/GuestProtected";
+import AIChat from "./components/AIChat";
 
 const App = () => {
   const [count, setCount] = useState(0);
@@ -25,6 +26,7 @@ const App = () => {
     // </Protected>
     <Router>
       <Routes>
+        <Route path="/ai" element={<AIChat />} />
         <Route
           path="/register"
           element={
