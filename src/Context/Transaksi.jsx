@@ -247,6 +247,54 @@ export const TransaksiProvider = ({ children }) => {
 
     return Object.values(itemMap).sort((a, b) => a.qty - b.qty);
   };
+  // pendapatan mingguan
+  const getTotalOmzetWeek = () => {
+    const now = new Date();
+
+    const startOfWeek = new Date(now);
+    startOfWeek.setDate(now.getDate() - now.getDay());
+
+    return ListTransaksi.filter((trx) => {
+      const trxDate = new Date(trx.tanggal);
+      return trxDate >= startOfWeek && trxDate <= now;
+    }).reduce(
+      (total, trx) =>
+        total + trx.items.reduce((sum, item) => sum + item.price * item.qty, 0),
+      0
+    );
+  };
+  // pendapatan bulanan
+  const getTotalOmzetMonth = () => {
+    const now = new Date();
+
+    return ListTransaksi.filter((trx) => {
+      const trxDate = new Date(trx.tanggal);
+
+      return (
+        trxDate.getMonth() === now.getMonth() &&
+        trxDate.getFullYear() === now.getFullYear()
+      );
+    }).reduce(
+      (total, trx) =>
+        total + trx.items.reduce((sum, item) => sum + item.price * item.qty, 0),
+      0
+    );
+  };
+
+  // tahunan
+  const getTotalOmzetYear = () => {
+    const now = new Date();
+
+    return ListTransaksi.filter((trx) => {
+      const trxDate = new Date(trx.tanggal);
+
+      return trxDate.getFullYear() === now.getFullYear();
+    }).reduce(
+      (total, trx) =>
+        total + trx.items.reduce((sum, item) => sum + item.price * item.qty, 0),
+      0
+    );
+  };
   return (
     <TransaksiContext.Provider
       value={{
@@ -256,12 +304,16 @@ export const TransaksiProvider = ({ children }) => {
         getTotalItemsSoldToday,
         getTotalOmzetToday,
         getWeeklyOmzet,
+        getMonthlyOmzet,
         ByIdTransaksi,
         transaksiById,
         getDailyOmzetThisMonth,
         getMostBoughtItemsThisWeek,
         getLeastBoughtItemsThisWeek,
         getTransactionToday,
+        getTotalOmzetWeek,
+        getTotalOmzetMonth,
+        getTotalOmzetYear,
       }}
     >
       {children}

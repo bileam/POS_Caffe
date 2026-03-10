@@ -13,8 +13,16 @@ const Report = () => {
     ListTransaksi,
     getMostBoughtItemsThisWeek,
     getLeastBoughtItemsThisWeek,
+    getTotalOmzetToday,
+    getWeeklyOmzet,
+    getMonthlyOmzet,
+    getDailyOmzetThisMonth,
+    getTotalOmzetWeek,
+    getTotalOmzetMonth,
+    getTotalOmzetYear,
   } = useContext(TransaksiContext);
 
+  console.log(getTotalOmzetWeek());
   const mostBought = useMemo(
     () => getMostBoughtItemsThisWeek(),
     [ListTransaksi]
@@ -24,6 +32,7 @@ const Report = () => {
     () => getLeastBoughtItemsThisWeek(),
     [ListTransaksi]
   );
+  // console.log(mostBought);
 
   return (
     <div className="flex flex-col h-screen gap-2">
@@ -45,10 +54,22 @@ const Report = () => {
         <div className="flex-1 bg-white overflow-y-auto rounded">
           <Keuntungan title="Keuntungan">
             <div className="flex gap-2 mb-3">
-              <Cart title="Hari ini" data="90.000" />
-              <Cart title="Mingguan" data="100.000" />
-              <Cart title="Bulanan" data="1.000.000" />
-              <Cart title="Tahunan" data="11.000.000" />
+              <Cart
+                title="Hari ini"
+                data={getTotalOmzetToday().toLocaleString("id-ID")}
+              />
+              <Cart
+                title="Mingguan"
+                data={getTotalOmzetWeek().toLocaleString("id-ID")}
+              />
+              <Cart
+                title="Bulanan"
+                data={getTotalOmzetMonth().toLocaleString("id-ID")}
+              />
+              <Cart
+                title="Tahunan"
+                data={getTotalOmzetYear().toLocaleString("id-ID")}
+              />
             </div>
             <Chart />
           </Keuntungan>
