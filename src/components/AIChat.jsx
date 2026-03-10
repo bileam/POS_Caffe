@@ -37,10 +37,10 @@ const AIChat = () => {
       className="bg-white shadow-xl max-w-[70%] rounded-xl p-4 w-full h-110 flex flex-col"
     >
       <h2 className="font-bold mb-3 text-green-600">AI Kasir</h2>
-      <span className="w-full border "></span>
+      <span className="w-full border mt-2 inline-block"></span>
 
       {/* Chat Area */}
-      <div className="flex-1 overflow-auto text-sm space-y-2 mb-3">
+      <div className="flex-1 overflow-auto text-sm space-y-2 mb-3 mt-2">
         {messages.map((msg, index) => (
           <div key={index}>
             <span

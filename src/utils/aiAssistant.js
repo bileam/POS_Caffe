@@ -82,5 +82,36 @@ export const askAI = (question, ctx) => {
       .join("\n")}`;
   }
 
+  if (q.includes("capek")) {
+    return "yang semangat ya, kerja keras tidak pernah menghianati hasil kokk";
+  }
+
+  if (q.includes("jam berapa")) {
+    const jam = new Date().toLocaleTimeString("id-ID");
+    return `sekarang pukul ${jam}. yang semangat yaaaaa bre`;
+  }
+  if (q.includes("pulang") || q.includes("jam pulang")) {
+    const sekarang = new Date();
+
+    const jamSekarang = sekarang.getHours();
+    const menitSekarang = sekarang.getMinutes();
+
+    const target = new Date();
+    target.setHours(17, 0, 0, 0); // 17:00
+
+    const selisihMs = target - sekarang;
+
+    if (selisihMs <= 0) {
+      return "Jam pulang adalah pukul 17.00. Sekarang sudah lewat jam pulang.";
+    }
+
+    const selisihJam = Math.floor(selisihMs / (1000 * 60 * 60));
+    const selisihMenit = Math.floor(
+      (selisihMs % (1000 * 60 * 60)) / (1000 * 60)
+    );
+
+    return `Jam pulang adalah pukul 17.00. Masih ${selisihJam} jam ${selisihMenit} menit lagi.`;
+  }
+
   return "Maaf saya belum mengerti pertanyaan itu.";
 };
