@@ -55,7 +55,7 @@ const AIChat = ({ className = "" }) => {
             <span
               className={
                 msg.role === "ai"
-                  ? "text-green-600 font-semibold"
+                  ? "text-red-600 font-semibold"
                   : "text-yellow-400 font-bold"
               }
             >
