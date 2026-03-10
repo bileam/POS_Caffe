@@ -2,11 +2,12 @@ import { useState, useContext, useRef, useEffect } from "react";
 import { TransaksiContext } from "../Context/Transaksi";
 import { askAI } from "../utils/aiAssistant";
 
-const AIChat = ({ className = " " }) => {
+const AIChat = ({ className = "" }) => {
   const ctx = useContext(TransaksiContext);
 
   const [question, setQuestion] = useState("");
   const [messages, setMessages] = useState([]);
+  const [typing, setTyping] = useState(false);
 
   const chatEndRef = useRef(null);
 
@@ -15,27 +16,34 @@ const AIChat = ({ className = " " }) => {
 
     if (!question.trim()) return;
 
-    const answer = await askAI(question, ctx);
+    const userQuestion = question;
 
-    setMessages((prev) => [
-      ...prev,
-      { role: "user", text: question },
-      { role: "ai", text: answer },
-    ]);
+    // tampilkan pesan user
+    setMessages((prev) => [...prev, { role: "user", text: userQuestion }]);
 
     setQuestion("");
+
+    // AI mulai mengetik
+    setTyping(true);
+
+    const answer = await askAI(userQuestion, ctx);
+
+    // delay 2 detik
+    setTimeout(() => {
+      setMessages((prev) => [...prev, { role: "ai", text: answer }]);
+      setTyping(false);
+    }, 2000);
   };
 
-  // auto scroll setiap ada pesan baru
+  // auto scroll
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
+  }, [messages, typing]);
 
   return (
     <div
       onClick={(e) => e.stopPropagation()}
-      //   max-w-[70%] w-full h-110
-      className={`bg-white  shadow-xl  rounded-xl ${className}   flex flex-col`}
+      className={`bg-white shadow-xl rounded-xl ${className} flex flex-col`}
     >
       <h2 className="font-bold mb-3 text-green-600">AI Kasir</h2>
       <span className="w-full border mt-2 inline-block"></span>
@@ -64,11 +72,17 @@ const AIChat = ({ className = " " }) => {
           </div>
         ))}
 
-        {/* anchor untuk scroll */}
+        {/* indikator mengetik */}
+        {typing && (
+          <div className="text-green-600 italic animate-pulse">
+            AI sedang mengetik...
+          </div>
+        )}
+
         <div ref={chatEndRef}></div>
       </div>
 
-      {/* Form Input */}
+      {/* Form */}
       <form onSubmit={handleAsk} className="flex gap-2 w-full">
         <input
           type="text"
