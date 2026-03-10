@@ -43,20 +43,20 @@ const AIChat = ({ className = "" }) => {
   return (
     <div
       onClick={(e) => e.stopPropagation()}
-      className={`bg-white shadow-xl rounded-xl ${className} flex flex-col`}
+      className={`bg-gray-800 shadow-xl rounded-xl ${className} flex flex-col`}
     >
       <h2 className="font-bold mb-3 text-green-600">AI Kasir</h2>
       <span className="w-full border mt-2 inline-block"></span>
 
       {/* Chat Area */}
-      <div className="flex-1 overflow-auto text-sm space-y-2 mb-3 mt-2">
+      <div className="flex-1 text-white overflow-auto text-sm space-y-2 mb-3 mt-2">
         {messages.map((msg, index) => (
           <div key={index}>
             <span
               className={
                 msg.role === "ai"
                   ? "text-green-600 font-semibold"
-                  : "text-black font-bold"
+                  : "text-yellow-400 font-bold"
               }
             >
               {msg.role === "user" ? "Anda: " : "AI: "}
@@ -64,7 +64,7 @@ const AIChat = ({ className = "" }) => {
 
             <span
               className={`whitespace-pre-line ${
-                msg.role === "ai" ? "text-gray-700" : "text-black"
+                msg.role === "ai" ? "text-green-600" : "text-yellow-400"
               }`}
             >
               {msg.text}
@@ -89,7 +89,7 @@ const AIChat = ({ className = "" }) => {
           value={question}
           onChange={(e) => setQuestion(e.target.value)}
           placeholder="Tanya sesuatu..."
-          className="border p-2 rounded flex-1"
+          className="border bg-white p-2 rounded  flex-1"
         />
 
         <button
