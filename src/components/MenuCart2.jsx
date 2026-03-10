@@ -49,45 +49,6 @@ const MenuCard2 = ({ datas }) => {
     console.log(res);
     setOpen(false);
   };
-  // console.log(datas);
-
-  const DataInput = [
-    {
-      name: "name",
-      value: form.name,
-      onChange: handleChange,
-      type: "text",
-      id: "name",
-    },
-    {
-      name: "price",
-      value: form.price,
-      onChange: handleChange,
-      type: "number",
-      id: "price",
-    },
-    {
-      name: "stock",
-      value: form.stock,
-      onChange: handleChange,
-      type: "number",
-      id: "stock",
-    },
-    {
-      name: "rating",
-      value: form.rating,
-      onChange: handleChange,
-      type: "number",
-      id: "rating",
-    },
-    {
-      name: "image",
-      value: form.image,
-      onChange: handleChange,
-      type: "text",
-      id: "image",
-    },
-  ];
 
   return (
     <>

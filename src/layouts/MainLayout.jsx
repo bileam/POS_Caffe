@@ -23,7 +23,7 @@ const MainLayout = () => {
         <div className="h-10  flex items-center ">
           <TopBar dataname={user?.fullname} />
         </div>
-        <main className="flex-1  overflow-hidden">
+        <main className="flex-1  overflow-hidden ">
           <Outlet />
         </main>
       </div>
